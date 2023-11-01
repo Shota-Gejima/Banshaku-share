@@ -1,4 +1,4 @@
-# Appetizers-Sensei
+# Banshaku-share
 ​
 ## サイト概要
 ### サイトテーマ
