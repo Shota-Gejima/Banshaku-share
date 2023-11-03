@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-9">
+      <h2 class="my-5 col-4">新規会員登録</h2>
+      <%= render "public/shared/error_messages", resource: resource %>
+      <%= form_with model: @user, url: user_registration_path do |f| %>
+        <table class="table table-bordered">
+          <tr>
+            <td style="width: 40%"><%= f.label :name, "名前" %></td>
+            <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+          </tr>
+          <tr>
+            <td style="width: 40%"><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td style="width: 40%"><%= f.label :birthday, "生年月日" %></br> ※20歳未満の方はご利用になられません"</td>
+            <td>
+              <%= f.date_select :birthday, {start_year: 1950, end_year: (Time.now.year - 20),
+                include_blank: true, use_two_digit_numbers: true},{class: "input-tab birthday-select"}%>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 40%">
+              <%= f.label :password, "パスワード(6文字以上)" %>
+              <% if @minimum_password_length %>
+              <% end %>
+            </td>
+            <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+          </tr>
+          <tr>
+            <td style="width: 40%"><%= f.label :password_confirmation, "パスワード（確認用）"  %></td>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+          </tr>
+          <tr>
+            <td style="width: 40%">
+              <div class="actions">
+                <%= f.submit "新規登録",class: 'btn btn-success' %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      <%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>
