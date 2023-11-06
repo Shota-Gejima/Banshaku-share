@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <h2 class="mt-4 mb-4">退会お手続き</h2>
+      <p>
+        退会手続きをされますと、全てのサービスがご利用いただけなくなります。<br>
+        再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
+        本当に退会してよろしいですか？
+      </p>
+      <div class="">
+        <%= link_to "退会する", user_withdraw_path, method: :patch, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
+        <%= link_to "退会しない", user_path(current_user), class: "btn btn-secondary ml-2" %>
+      </div>
+    </div>
+  </div>
+</div>

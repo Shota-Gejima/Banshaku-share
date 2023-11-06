@@ -1,0 +1,63 @@
+<h1>user/show</h1>
+
+  
+<% @recipes.each do |recipe| %>
+  
+<% end %>
+<div>
+<div class="container">
+  <div class="texts-wrapper">
+    <div class="contents-title">
+      <div class="row">
+        <div class="col-4 mt-5">
+          <!--<= render 'genre' %>　サイドバー考え中-->
+          <%= image_tag @user.get_profile_image(100,100) %>
+          <table class="table table-borderless">
+            <tr>
+              <th>名前：</th><td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>自己紹介：</th><td><%= @user.introduction %></td>
+            </tr>
+            <% if @user.id == current_user.id %>
+              <tr>
+                <td><%= link_to "編集する", edit_user_path(current_user) %></td>
+              </tr>
+            <% end %>
+          </table>
+          
+          
+          
+        </div>
+        <!--<div class="container">-->
+          <div class="row">
+            <% @recipes.each do |recipe| %>
+              <div class="col-md-3 my-4">
+                <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+                  <!--<img src="..." class="card-img-top" alt="...">-->
+                  <%= link_to recipe_path(recipe.id) do %>
+                    <%= image_tag recipe.get_recipe_image(100,100) %>
+                  <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= recipe.title %></h5>
+                    <p class="card-text"><%= recipe.description %></p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><%= recipe.alcohol.name %></li>
+                    <li class="list-group-item"><%= recipe.food.name %></li>
+                    <li class="list-group-item"><%= recipe.making_time.name %></li>
+                    <li class="list-group-item"><%= recipe.user.name %></li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>

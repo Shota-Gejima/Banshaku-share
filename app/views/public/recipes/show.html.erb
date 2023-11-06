@@ -1,0 +1,15 @@
+<div>
+  <%= image_tag @recipe.get_recipe_image(5,35) %>
+  <p>おつまみ名：<%= @recipe.title %></p>
+  <p>説明：<%= @recipe.description %></p>
+  <p>合うお酒：<%= @recipe.alcohol.name %></p>
+  <p>食材の部類：<%= @recipe.food.name %></p>
+  <p>所要時間：<%= @recipe.making_time.name %></p>
+  <p>作り方：<%= @recipe.process %></p>
+  <p>投稿者：<%= @recipe.user.name %></p>
+  <p>投稿日：<%= @recipe.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @recipe.user_id == current_user.id %>
+    <%= link_to "編集する", edit_recipe_path(@recipe.id) %>
+    <%= link_to "削除する", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
+</div>
