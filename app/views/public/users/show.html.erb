@@ -1,42 +1,38 @@
 <h1>user/show</h1>
 
-  
-<% @recipes.each do |recipe| %>
-  
-<% end %>
-<div>
 <div class="container">
   <div class="texts-wrapper">
     <div class="contents-title">
       <div class="row">
-        <div class="col-4 mt-5">
-          <!--<= render 'genre' %>　サイドバー考え中-->
-          <%= image_tag @user.get_profile_image(100,100) %>
+        <div class="col-md-4 mt-5">
+          <%= image_tag @user.get_profile_image(100, 100), class: "img-thumbnail" %>
           <table class="table table-borderless">
             <tr>
-              <th>名前：</th><td><%= @user.name %></td>
+              <th>名前：</th>
+              <td><%= @user.name %></td>
             </tr>
             <tr>
-              <th>自己紹介：</th><td><%= @user.introduction %></td>
+              <th>自己紹介：</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+            <tr>
+              <th>お気に入りのおつまみたち</th>
+              <td><% @user.recipes.favorites %></td>
             </tr>
             <% if @user.id == current_user.id %>
               <tr>
-                <td><%= link_to "編集する", edit_user_path(current_user) %></td>
+                <td><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary" %></td>
               </tr>
             <% end %>
           </table>
-          
-          
-          
         </div>
-        <!--<div class="container">-->
+        <div class="col-md-8">
           <div class="row">
             <% @recipes.each do |recipe| %>
               <div class="col-md-3 my-4">
-                <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
-                  <!--<img src="..." class="card-img-top" alt="...">-->
+                <div class="card bg-transparent border-0" style="width: 18rem;">
                   <%= link_to recipe_path(recipe.id) do %>
-                    <%= image_tag recipe.get_recipe_image(100,100) %>
+                    <%= image_tag recipe.get_recipe_image(100, 100) %>
                   <% end %>
                   <div class="card-body">
                     <h5 class="card-title"><%= recipe.title %></h5>
@@ -56,7 +52,7 @@
               </div>
             <% end %>
           </div>
-        <!--</div>-->
+        </div>
       </div>
     </div>
   </div>

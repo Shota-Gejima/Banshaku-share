@@ -8,7 +8,6 @@ class Public::RecipesController < ApplicationController
     @recipe = current_user.recipes.new(recipe_params)
     @recipe.save
     redirect_to recipes_path
-    
   end
   
   def edit
@@ -28,6 +27,7 @@ class Public::RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
+    @comment = Comment.new
   end
   
   def destroy

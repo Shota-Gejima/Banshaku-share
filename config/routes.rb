@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
   
   
   #管理者側
@@ -29,7 +32,10 @@ Rails.application.routes.draw do
   scope module: :public do
   root to: 'homes#top'
   get 'about' => 'homes#about'
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: [:create, :destroy]
+    resource :favorite, only: [:create, :destroy]
+  end
   resources :users, only: [:index, :show, :edit, :update]
   get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
   patch 'users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'

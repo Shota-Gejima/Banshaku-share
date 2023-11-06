@@ -1,15 +1,49 @@
-<div>
-  <%= image_tag @recipe.get_recipe_image(5,35) %>
-  <p>おつまみ名：<%= @recipe.title %></p>
-  <p>説明：<%= @recipe.description %></p>
-  <p>合うお酒：<%= @recipe.alcohol.name %></p>
-  <p>食材の部類：<%= @recipe.food.name %></p>
-  <p>所要時間：<%= @recipe.making_time.name %></p>
-  <p>作り方：<%= @recipe.process %></p>
-  <p>投稿者：<%= @recipe.user.name %></p>
-  <p>投稿日：<%= @recipe.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @recipe.user_id == current_user.id %>
-    <%= link_to "編集する", edit_recipe_path(@recipe.id) %>
-    <%= link_to "削除する", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag @recipe.get_recipe_image(5, 35) %>
+      <p>おつまみ名：<%= @recipe.title %></p>
+      <p>説明：<%= @recipe.description %></p>
+      <p>合うお酒：<%= @recipe.alcohol.name %></p>
+      <p>食材の部類：<%= @recipe.food.name %></p>
+      <p>所要時間：<%= @recipe.making_time.name %></p>
+      <p>作り方：<%= @recipe.process %></p>
+      <p>投稿者：<%= @recipe.user.name %></p>
+      <p>投稿日：<%= @recipe.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @recipe.user_id == current_user.id %>
+        <%= link_to "編集する", edit_recipe_path(@recipe.id), class: "btn btn-primary" %>
+        <%= link_to "削除する", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row mt-3">
+    <div class="col-md-6 mt-2">
+      <p>コメント件数：<%= @recipe.comments.count %></p>
+      <% @recipe.comments.each do |comment| %>
+        <div class="media">
+          <%= image_tag comment.user.get_profile_image(100, 100) %>
+          <div class="media-body mt-1">
+            <h5 class="mt-2"><%= comment.user.name %></h5>
+            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+            <%= comment.comment %>
+            <% if comment.user_id == current_user.id %>
+              <%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <%= form_with model: [@recipe, @comment] do |f| %>
+        <div class="form-group">
+          <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: "form-control" %>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>

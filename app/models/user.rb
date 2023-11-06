@@ -3,9 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_one_attached :profile_image
   
+  has_one_attached :profile_image
   has_many :recipes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -17,5 +19,13 @@ class User < ApplicationRecord
   
   def active_for_authentication?
     super && (is_deleted == false) # is_deletedがfalseならtrueを返す
+  end
+  
+  GUEST_USER_EMAIL = "guest@example.com"
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
   end
 end
