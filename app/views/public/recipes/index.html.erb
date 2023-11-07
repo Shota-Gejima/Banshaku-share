@@ -1,55 +1,7 @@
 <div class="container">
   <div class="texts-wrapper">
     <div class="contents-title">
-      <div class="row">
-        <div class="col-2 mt-5">
-          <!--<= render 'genre' %>　サイドバー考え中-->
-        </div>
-        <!--<div class="container">-->
-          <div class="row">
-            <% @recipes.each do |recipe| %>
-              <div class="col-md-3 my-4">
-                <div class="card w-150 bg-transparent border-0" style="width: 18rem;">
-                  <!--<img src="..." class="card-img-top" alt="...">-->
-                  
-
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= image_tag recipe.get_recipe_image(100,100) %>
-                  <% end %>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= recipe.title %></h5>
-                    <p class="card-text"><%= recipe.description %></p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= recipe.alcohol.name %></li>
-                    <li class="list-group-item"><%= recipe.food.name %></li>
-                    <li class="list-group-item"><%= recipe.making_time.name %></li>
-                    <li class="list-group-item"><%= link_to recipe.user.name, user_path(recipe.user.id) %></li>
-                  </ul>
-                  <div class="card-body">
-                    <% if recipe.favorited_by?(current_user) %>
-                      <a href="#" class="card-link">
-                        <%= link_to recipe_favorite_path(recipe), method: :delete do %>
-                          ♥<%= recipe.favorites.count %> いいね
-                        <% end %>
-                      </a>
-                    <% else %>
-                      <a href="#" class="card-link">
-                        <%= link_to recipe_favorite_path(recipe), method: :post do %>
-                          ♡<%= recipe.favorites.count %> いいね
-                        <% end %>
-                      </a>
-                    <% end %>
-                    <a href="<%= recipe_path(recipe.id) %>" class="card-link ml-4"><%= recipe.comments.count %> コメント</a>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <!--</div>-->
-      </div>
+      <%= render "recipe", recipes: @recipes %>
     </div>
   </div>
 </div>
-  
-

@@ -1,6 +1,14 @@
 <h1></h1>
 <h1>TOP</h1>
-<%= flash[:notice] %>
-<%= link_to "ゲストログイン", users_guest_sign_in_path %>
-<%= link_to "新規登録", new_user_registration_path %>
-<%= link_to "ログイン", new_user_session_path %>
+
+<div class="jumbotron">
+  <div class='index-content text-center'>
+    <h1 class='home-index'>いつものBanshakuを共有しよう!</h1>
+
+    <div class='index-btn d-flex justify-content-around'>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path %>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    </div>
+  </div>
+</div>

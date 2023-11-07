@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :destroy]
     end
-    # resources :tugs, only: [:index, :create, :edit, :update]
   end
   
   #会員側
@@ -36,10 +35,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :favorites
+    end
+  end
   get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
   patch 'users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
 end

@@ -8,16 +8,15 @@
           <%= image_tag @user.get_profile_image(100, 100), class: "img-thumbnail" %>
           <table class="table table-borderless">
             <tr>
-              <th>名前：</th>
+              <th style="width:40%">名前</th>
               <td><%= @user.name %></td>
             </tr>
             <tr>
-              <th>自己紹介：</th>
+              <th>自己紹介</th>
               <td><%= @user.introduction %></td>
             </tr>
             <tr>
-              <th>お気に入りのおつまみたち</th>
-              <td><% @user.recipes.favorites %></td>
+              <th colspan="2"><%= link_to "お気に入りのおつまみ", favorites_user_path(@user.id) %></th>
             </tr>
             <% if @user.id == current_user.id %>
               <tr>
