@@ -1,17 +1,13 @@
 <div class="row">
-  <div class="col-2 mt-5">
-    <!--<= render 'genre' %>　サイドバー考え中-->
-  </div>
   <% recipes.each do |recipe| %>
-    <div class="col-md-3 my-4">
+    <div class="col-md-3 col-1 my-4">
       <div class="card w-150 bg-transparent border-0" style="width: 18rem;">
-        <!--<img src="..." class="card-img-top" alt="...">-->
         <%= link_to recipe_path(recipe.id) do %>
-          <%= image_tag recipe.get_recipe_image(100,100) %>
+          <%= image_tag recipe.get_recipe_image(288, 100) %>
         <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= recipe.title %></h5>
-          <p class="card-text"><%= recipe.description %></p>
+          <h5 class="card-title"><%= recipe.title.truncate(10) %></h5>
+          <p class="card-text"><%= recipe.description.truncate(12) %></p>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><%= recipe.alcohol.name %></li>
@@ -33,9 +29,12 @@
               <% end %>
             </a>
           <% end %>
-          <a href="<%= recipe_path(recipe.id) %>" class="card-link ml-4"><%= recipe.comments.count %> コメント</a>
+          <a href="<%= recipe_path(recipe.id) %>" class="card-link"><%= recipe.comments.count %> コメント</a>
         </div>
       </div>
     </div>
   <% end %>
+</div>
+<div class="d-flex justify-content-center mt-3 custom-pagination">
+  <%= paginate recipes %>
 </div>

@@ -1,8 +1,14 @@
 <div class="container">
   <div class="texts-wrapper">
     <div class="contents-title">
-      <h1><%= @user.name %>さんのお気に入りのおつまみたち</h1>
-      <%= render "public/recipes/recipe", recipes: @favorite_recipes %>
+      <div class="row">
+        <h1><%= @user.name %>さんのお気に入りのおつまみたち</h1>
+      </div>
+      <div class="row">
+        <div class="col-9 mt-3">
+          <%= render "public/recipes/recipe-index", recipes: @favorite_recipes %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

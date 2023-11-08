@@ -1,25 +1,9 @@
-<h1></h1>
-<h1>新規投稿</h1>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-9">
+      <h2 class="bg-brown my-5 col-4">新規登録</h2>
+      <%= render "form", recipe: @recipe %>
+    </div>
+  </div>
+</div>
 
-<%= form_with model: @recipe do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :recipe_image, accept: "image/*" %>
-  <h4>おつまみ名</h4>
-  <%= f.text_field :title %>
-  <h4>おつまみの説明</h4>
-  <%= f.text_area :description %>
-  <h4>おつまみの作り方</h4>
-  <%= f.text_area :process %>
-  
-  <%= f.label :alcohol, 'アルコール種類' %>
-  <%= f.collection_select(:alcohol_id, Alcohol.all, :id, :name, {}, {class:"#", id:"#"}) %>
-  
-  <%= f.label :food, '食材' %>
-  <%= f.collection_select(:food_id, Food.all, :id, :name, {}, {class:"#", id:"#"}) %>
-  
-  <%= f.label :making_time, '所要時間' %>
-  <%= f.collection_select(:making_time_id, MakingTime.all, :id, :name, {}, {class:"#", id:"#"}) %>
-  
-  
-  <%= f.submit '投稿' %>
-<% end %>

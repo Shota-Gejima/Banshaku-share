@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes
+    @recipes = @user.recipes.page(params[:page])
   end
 
   def edit
@@ -32,7 +32,7 @@ class Public::UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user: @user.id).pluck(:recipe_id)
-    @favorite_recipes = Recipe.find(favorites)
+    @favorite_recipes = Recipe.where(id: favorites).page(params[:page])
   end
   
   private

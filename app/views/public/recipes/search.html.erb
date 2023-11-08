@@ -1,0 +1,10 @@
+<% if @alcohol.present? %>
+  <h1>検索カテゴリー "<%= @alcohol.name %>"</h1>
+<% elsif @food.present? %>
+  <h1>検索カテゴリー "<%= @food.name %>"</h1>
+<% elsif @making_time.present? %>
+  <h1>検索カテゴリー "<%= @making_time.name %>"</h1>
+<% else %>
+<h1>検索ワード "<%= params[:q][:title_or_description_cont] %>"</h1>
+<% end %>
+<%= render "genre-index", recipes: @recipes %>

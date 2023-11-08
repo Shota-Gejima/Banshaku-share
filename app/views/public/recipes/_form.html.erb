@@ -1,0 +1,48 @@
+<%= form_with model: recipe, local: true do |f| %>
+  <table class="table table-borderless">
+    <tr>
+      <td><%= f.label :recipe_image, "画像" %></td>
+      <td><%= f.file_field :recipe_image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :title, "おつまみ名" %></td>
+      <td><%= f.text_field :title, autofocus: true, autocomplete: "title", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :description, "おつまみの説明" %></td>
+      <td><%= f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :process, "おつまみの作り方" %></td>
+      <td><%= f.text_area :process, autofocus: true, autocomplete: "process", class: "form-control", rows: 10 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :alcohol_id, "アルコール種類" %></td>
+      <td><%= f.collection_select(:alcohol_id, Alcohol.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :food_id, '食材' %></td>
+      <td><%= f.collection_select(:food_id, Food.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :making_time_id, '所要時間' %></td>
+      <td><%= f.collection_select(:making_time_id, MakingTime.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="actions d-flex justify-content-center mt-3">
+          <% if current_page?(new_recipe_path) %>
+            <%= f.submit "おつまみを投稿する", class: "btn btn-success btn-md" %>
+          <% else %>
+            <%= f.submit "変更内容を保存する", class: "btn btn-success btn-md" %>
+          <% end %>
+          
+          
+          
+          
+          <!--<= f.submit "おつまみを投稿する",class: 'btn btn-success btn-lg' %>-->
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>
