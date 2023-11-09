@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+    get 'users/update'
+  end
   # namespace :public do
     # get 'users/show'
     # get 'users/edit'
@@ -31,6 +37,7 @@ Rails.application.routes.draw do
   scope module: :public do
   root to: 'homes#top'
   get 'about' => 'homes#about'
+  get 'verify_age' => 'homes#verify_age'
   get '/recipe/search', to: "recipes#search"
   resources :recipes do
     resources :comments, only: [:create, :destroy]

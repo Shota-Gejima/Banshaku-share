@@ -1,8 +1,10 @@
+<h1>genre_index</h1>
+
 <div class="row">
   <% @recipes.each_slice(3) do |recipe_group| %>
     <% recipe_group.each do |recipe| %>
       <div class="col-4">
-        <div class="card mx-auto mt-4 shadow-lg">
+        <div class="card-link mx-auto mt-4 shadow-lg">
           <%= link_to recipe_path(recipe.id) do %>
             <%= image_tag recipe.get_recipe_image(500, 600), class: "card-img-top"; %>
           <% end %>

@@ -10,7 +10,8 @@
       <p>作り方: <%= @recipe.process %></p>
       <p>投稿者: <%= @recipe.user.name %></p>
       <p>投稿日: <%= @recipe.created_at.strftime('%Y/%m/%d') %></p>
-      <% if @recipe.user_id == current_user.id %>
+      <!--管理者か投稿者しか消せないようにする-->
+       <% if current_admin || @user.id == current_user.id %>
         <div class="mt-3">
           <%= link_to "編集する", edit_recipe_path(@recipe.id), class: "btn btn-primary" %>
           <%= link_to "削除する", recipe_path(@recipe.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
@@ -29,7 +30,8 @@
                   <h5 class="mt-2"><%= comment.user.name %></h5>
                   <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
                   <p><%= comment.comment %></p>
-                  <% if comment.user_id == current_user.id %>
+                  <!--管理者か投稿者しか消せないようにする-->
+                  <% if current_admin || @user.id == current_user.id %>
                     <%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
                   <% end %>
                 </div>

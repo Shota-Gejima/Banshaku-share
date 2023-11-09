@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2 my-3 bg-brown">
+      <h3>会員詳細</h3>
+    </div>
+  </div>
+  <% if flash[:notice].present? %>
+   <div class="alert alert-success">
+     <%= flash[:notice] %>
+   </div>
+  <% end %>
+  <div class="row">
+    <div class="col-10">
+      <table class="table table-borderless">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>生年月日</td>
+          <td><%= @user.birthday %> (<%= @user.age %> 歳)</td>
+        </tr>
+        <tr>
+          <td>会員ステータス  (有効 or 退会)</td>
+          <% if @user.is_deleted == false %>
+            <td class="text-success">有効</td>
+          <% else %>
+            <td class="tex-secondary">退会</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success btn-lg" %></td>
+          <!--<td><= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-lg" %></td>-->
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

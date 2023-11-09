@@ -5,4 +5,7 @@ class Public::HomesController < ApplicationController
   
   def about
   end
+  
+  def verified
+  end
 end

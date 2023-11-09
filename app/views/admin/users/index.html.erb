@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2 my-3 bg-brown">
+      <h3> 会員一覧</h3>
+    </div>
+  </div>
+  <% if flash[:notice].present? %>
+   <div class="alert alert-success">
+     <%= flash[:notice] %>
+   </div>
+  <% end %>
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <table class="table">
+        <thead>
+          <tr class="bg-brown">
+            <th style="width: 10%">会員ID</th>
+            <th style="width: 30%">氏名</th>
+            <th style="width: 40%">メールアドレス</th>
+            <th style="width: 20%">会員ステータス  (有効 or 退会)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+           <td><%= user.id %></td>
+           <td><%= link_to user.name, admin_user_path(user.id), class:"link-order-customer" %></td>
+           <td><%= user.email %></td>
+           <td>
+             <% if user.is_deleted == false %>
+              <p class="text-success">有効</p>
+             <% else %>
+              <p class="text-secondary">退会</p>
+             <% end %>
+           </td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-3 custom-pagination">
+        <%= paginate @users %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="texts-wrapper">
-    <div class="contents-title">
-      <div class="row">
+  <!--<div class="texts-wrapper">-->
+    <!--<div class="contents-title">-->
+      <div class="row mt-3">
         <h1><%= @user.name %>さんのお気に入りのおつまみたち</h1>
       </div>
       <div class="row">
-        <div class="col-9 mt-3">
-          <%= render "public/recipes/recipe-index", recipes: @favorite_recipes %>
-        </div>
+        <!--<div class="col-9 mt-3">-->
+          <%= render "public/recipes/recipe-index", recipes: @recipes %>
+        <!--</div>-->
       </div>
     </div>
   </div>

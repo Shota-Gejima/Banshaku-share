@@ -21,11 +21,20 @@ class User < ApplicationRecord
     super && (is_deleted == false) # is_deletedがfalseならtrueを返す
   end
   
-  GUEST_USER_EMAIL = "guest@example.com"
+  # GUEST_USER_EMAIL = "guest@example.com"
   def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
+  end
+  
+# 生年月日から年齢を計算する
+  def age
+    today = Time.zone.today
+    this_years_birthday = Time.zone.local(today.year, birthday.month, birthday.day)
+    age = today.year - birthday.year
+    age -= 1 if today < this_years_birthday
+    age
   end
 end

@@ -2,9 +2,8 @@
   <div class="row justify-content-start">
     
     <div class="col-9 mx-auto">
-      <h2 class="my-5 col-4">新規会員登録</h2>
-      <%= render "public/shared/error_messages", resource: resource %>
-      <%= form_with model: @user, url: user_registration_path do |f| %>
+      <h2 class="my-5 col-4">会員編集</h2>
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
         <table class="table table-borderless">
           <tr>
             <td style="width: 40%"><%= f.label :name, "名前" %></td>
@@ -15,34 +14,21 @@
             <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
           </tr>
           <tr>
-            <td style="width: 40%"><%= f.label :birthday, "生年月日" %></br> ※20歳未満の方はご利用になられません</br>※後から変更はできません</td>
+            <td style="width: 40%"><%= f.label :birthday, "生年月日" %>
             <td style="text-align: left; vertical-align: middle;">
               <%= f.date_select :birthday, {start_year: 1950, end_year: (Time.now.year - 20),
                 include_blank: true, use_two_digit_numbers: true},{class: "input-tab birthday-select form-control mx-2", style: 'display: inline-block;width:auto;'} %>
             </td>
           </tr>
           <tr>
-            <td style="width: 40%">
-              <%= f.label :password, "パスワード(6文字以上)" %>
-              <% if @minimum_password_length %>
-              <% end %>
-            </td>
-            <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td style="width: 40%"><%= f.label :password_confirmation, "パスワード（確認用）"  %></td>
-            <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
-          </tr>
-          <tr>
             <td colspan="2" style="width: 40%;">
               <div class="actions">
-                <%= f.submit "会員登録する",class: 'btn btn-success form-control' %>
+                <%= f.submit "編集内容を保存する",class: 'btn btn-success form-control' %>
               </div>
             </td>
           </tr>
         </table>
       <% end %>
-      <%= render "public/shared/links" %>
     </div>
   </div>
 </div>
