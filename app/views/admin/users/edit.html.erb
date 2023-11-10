@@ -21,6 +21,13 @@
             </td>
           </tr>
           <tr>
+            <td style="width: 40%">会員ステータス</td>
+            <td>
+              <%= f.radio_button :is_deleted, false %><%= f.label :有効 %>
+              <%= f.radio_button :is_deleted, true %><%= f.label :退会 %>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2" style="width: 40%;">
               <div class="actions">
                 <%= f.submit "編集内容を保存する",class: 'btn btn-success form-control' %>

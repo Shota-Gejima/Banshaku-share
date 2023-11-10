@@ -89,7 +89,11 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
+    gimei (1.2.0)
+      romaji
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -195,6 +199,8 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     rubyzip (2.3.2)
@@ -263,6 +269,8 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  faker
+  gimei
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)
