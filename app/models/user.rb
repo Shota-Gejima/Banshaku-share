@@ -9,6 +9,20 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  #フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
+   # 中間テーブルを介して「follower」モデルのUser(フォローされた側)を集めることを「followings」と定義
+  has_many :followings, through: :active_relationships, source: :follower
+  #フォローされる側のUserから見て、フォローしてくる側のUserを(中間テーブルを介して)集める。なので親はfollower_id(フォローされる側)
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
+  # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
+  has_many :followers, through: :passive_relationships, source: :following
+  
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
+  end
+    
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -21,7 +35,6 @@ class User < ApplicationRecord
     super && (is_deleted == false) # is_deletedがfalseならtrueを返す
   end
   
-  # GUEST_USER_EMAIL = "guest@example.com"
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -37,4 +50,5 @@ class User < ApplicationRecord
     age -= 1 if today < this_years_birthday
     age
   end
+  
 end

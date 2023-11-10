@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/create'
+    get 'relationships/destroy'
+  end
   namespace :admin do
     get 'users/index'
     get 'users/show'
@@ -44,8 +48,11 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]
   end
   resources :users, only: [:index, :show, :edit, :update] do
+    resources :relationships, only: [:create, :destroy]
     member do
       get :favorites
+      get :follows
+      get :followers
     end
   end
   get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'

@@ -19,7 +19,19 @@
             <% if current_admin || @user.id == current_user.id %>
               <tr>
                 <th colspan="2"><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                <th colspan="2"><%= link_to "フォロー一覧", follows_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                <th colspan="2"><%= link_to "フォロワー一覧", followers_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
               </tr>
+            <% else %>
+              <% if @user.followed_by?(current_user) %>
+                <tr>
+                  <th colspan="2"><%= link_to "フォローを外す", user_relationship_path(@user), method: :delete, class: "btn btn-danger btn-sm" %></td>
+                </tr>
+              <% else %>
+                <tr>
+                  <th colspan="2"><%= link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-primary btn-sm" %></td>
+                </tr>
+              <% end %>
             <% end %>
           </table>
         </div>

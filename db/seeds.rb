@@ -5,16 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(email: "admin@example.com", password: "111111")
+# Admin.create!(email: "admin@example.com", password: "111111")
 
+#疑似的にユーザーを作成
 require 'faker'
 10.times do |n|
-  name = Gimei.kanji
+  name = Gimei.name.kanji
   email = Faker::Internet.email
   password = 'test1234TEST'
   password_confirmation = 'test1234TEST'
   birthday = Faker::Date.between(from: '1960-01-01', to: '2000-04-30')
-# start_time = Faker::Date.between(from: '2021-01-01', to: '2021-04-30') #期間を限定することもできます。
   User.create!(
     name:                   name, 
     email:                  email,
@@ -24,5 +24,19 @@ require 'faker'
     birthday:               birthday, 
     created_at:             "2023-11-9 00:00:00",
     updated_at:             "2023-11-9 00:00:00"
+  )
+end
+
+#疑似的にレシピを作成
+Faker::Config.locale = 'ja'
+20.times do
+  Recipe.create!(
+    user_id: rand(1..12),
+    alcohol_id: rand(1..5),
+    food_id: rand(1..5),
+    making_time_id: rand(1..5),
+    title: Faker::Food.dish,
+    description: Faker::Food.description,
+    process: "お皿に盛り付けるだけです。"
   )
 end

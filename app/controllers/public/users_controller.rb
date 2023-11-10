@@ -35,6 +35,18 @@ class Public::UsersController < ApplicationController
     @recipes = Recipe.where(id: favorites).page(params[:page])
   end
   
+  def follows
+    user = User.find(params[:id])
+    @recipes = Recipe.where(user: user)
+    @follows = user.followings.page(params[:page]).per(8)
+    
+  end
+  
+  def followers
+    user = User.find(params[:id])
+    @followers = user.followers.page(params[:page]).per(8)
+  end
+  
   private
   
   def user_params

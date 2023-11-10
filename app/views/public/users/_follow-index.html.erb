@@ -1,0 +1,31 @@
+<div class="col-11 p-3 mx-auto">
+  <% if buddy.present? %>
+    <table class="table">
+      <thead>
+        <tr class="bg-brown">
+          <th style="width: 20%"></th>
+          <th style="width: 20%">名前</th>
+          <th style="width: 10%">年齢</th>
+          <th style="width: 20%">投稿数</th>
+          <th style="width: 30%">フォロワー数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% buddy.each do |user| %>
+        <tr>
+          <td class="text-center"><%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %></td>
+          <td><%= link_to user.name, user_path(user.id), class:"link-order-customer" %></td>
+          <td><%= user.age %> 歳</td>
+          <td><%= user.recipes.count %></td>
+          <td><%= user.passive_relationships.count %></td>
+        </tr>
+       <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center m-3 custom-pagination">
+      <%= paginate buddy %>
+    </div>
+  <% else %>
+    <h3> 該当するユーザーは見つかりませんでした。</h3>
+  <% end %>
+</div>
