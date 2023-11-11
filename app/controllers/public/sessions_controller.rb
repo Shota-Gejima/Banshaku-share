@@ -28,7 +28,7 @@ class Public::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to user_path(user), notice: "ゲストユーザーでログインしました"
   end
-  
+
   protected
   
   def reject_user
@@ -36,7 +36,7 @@ class Public::SessionsController < Devise::SessionsController
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
         flash[:notice] = "退会済みです。再度登録をしてご利用ください"
-        redirect_to new_user_registration
+        redirect_to  new_user_session_path(resource)
       else
         flash[:notice] = "項目を入力してください"
       end

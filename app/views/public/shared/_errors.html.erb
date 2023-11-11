@@ -1,0 +1,10 @@
+<% if obj.errors.any? %>
+  <ul class="alert alert-danger" role="alert">
+    <h6 class="alert-heading">
+      <%= obj.errors.count %>件のエラーが発生しました
+    </h6>
+    <% obj.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

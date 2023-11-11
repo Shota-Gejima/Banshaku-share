@@ -5,11 +5,7 @@
       <h3> 会員一覧</h3>
     </div><br>
   </div>
-  <% if flash[:notice].present? %>
-   <div class="alert alert-success">
-     <%= flash[:notice] %>
-   </div>
-  <% end %>
+  <%= render "layouts/flash" %>
   <!--<div class="row">-->
     <!--<div class="col-9 mx-auto">-->
       <table class="table">

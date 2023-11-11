@@ -3,7 +3,7 @@
     
     <div class="col-9 mx-auto">
       <h2 class="my-5 col-4">新規会員登録</h2>
-      <%= render "public/shared/error_messages", resource: resource %>
+      <%= render "public/shared/errors", obj: resource %>
       <%= form_with model: @user, url: user_registration_path do |f| %>
         <table class="table table-borderless">
           <tr>

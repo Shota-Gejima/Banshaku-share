@@ -17,7 +17,7 @@
       <td><%= f.text_area :process, autofocus: true, autocomplete: "process", class: "form-control", rows: 10 %></td>
     </tr>
     <tr>
-      <td><%= f.label :alcohol_id, "アルコール種類" %></td>
+      <td><%= f.label :alcohol_id, "合うお酒" %></td>
       <td><%= f.collection_select(:alcohol_id, Alcohol.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
     </tr>
     <tr>
@@ -36,11 +36,6 @@
           <% else %>
             <%= f.submit "変更内容を保存する", class: "btn btn-success btn-md" %>
           <% end %>
-          
-          
-          
-          
-          <!--<= f.submit "おつまみを投稿する",class: 'btn btn-success btn-lg' %>-->
         </div>
       </td>
     </tr>

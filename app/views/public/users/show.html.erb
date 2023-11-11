@@ -2,38 +2,42 @@
   <div class="texts-wrapper">
     <div class="contents-title">
       <div class="row mt-5">
-        <div class="col-2 md-4 mt-4">
-          <%= image_tag @user.get_profile_image(100, 200), class: "img-thumbnail" %>
-          <table class="table table-borderless">
-            <tr>
-              <th style="width:40%">名前</th>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <th style="width:40%">自己紹介</th>
-              <td><%= @user.introduction %></td>
-            </tr>
-            <tr>
-              <th colspan="2"><%= link_to "お気に入りのおつまみ", favorites_user_path(@user.id) %></th>
-            </tr>
-            <% if current_admin || @user.id == current_user.id %>
+        <div class="col-4 md-4 mt-4">
+          <%= image_tag @user.get_profile_image(150, 150), class: "img-thumbnail", size: "300x300" %>
+        </div>
+          <div class="col-8 md-4 mt-4">
+            <table class="table table-borderless">
               <tr>
-                <th colspan="2"><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
-                <th colspan="2"><%= link_to "フォロー一覧", follows_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
-                <th colspan="2"><%= link_to "フォロワー一覧", followers_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                <th style="width:40%">名前</th>
+                <td><%= @user.name %></td>
               </tr>
-            <% else %>
               <tr>
-                <th id="relationship-buttons_<%= @user.id %>" colspan="2">
-                  <%= render "public/relationships/relationship" %>
-                </th>
+                <th style="width:40%">自己紹介</th>
+                <td><%= @user.introduction %></td>
               </tr>
-            <% end %>
-          </table>
+              <tr>
+                <th colspan="2"><%= link_to "お気に入りのおつまみ", favorites_user_path(@user.id) %></th>
+              </tr>
+              <% if current_admin || @user.id == current_user.id %>
+                <tr>
+                  <th><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                  <td><%= link_to "フォロー一覧", follows_user_path(current_user), class: "btn btn-primary btn-sm" %>
+                  <%= link_to "フォロワー一覧", followers_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                </tr>
+              <% else %>
+                <tr>
+                  <th id="relationship-buttons_<%= @user.id %>" colspan="2">
+                    <%= render "public/relationships/relationship", user: @user %>
+                  </th>
+                </div>
+              <% end %>
+            </table>
         </div>
       </div>
+      <h4><%= @user.name %> さんの投稿したおつまみ</h4>
+      </div>
       <div class="row">
-          <%= render "/public/recipes/recipe-index", recipes: @recipes %>
+        <%= render "/public/recipes/recipe-index", recipes: @recipes %>
       </div>
     </div>
   </div>

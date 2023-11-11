@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]
   end
   resources :users, only: [:index, :show, :edit, :update] do
-    resources :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
     member do
       get :favorites
       get :follows

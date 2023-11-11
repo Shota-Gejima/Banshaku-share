@@ -5,12 +5,14 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  validates :recipe_image, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :process, presence: true
   validates :alcohol_id, presence: true
   validates :food_id, presence: true
   validates :making_time_id, presence: true
+
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :alcohol

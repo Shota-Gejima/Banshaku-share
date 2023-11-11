@@ -5,9 +5,13 @@
         <h1><%= @user.name %>さんのお気に入りのおつまみたち</h1>
       </div>
       <div class="row">
-        <!--<div class="col-9 mt-3">-->
+        <% if @recipes.present? %>
           <%= render "public/recipes/recipe-index", recipes: @recipes %>
-        <!--</div>-->
+        <% else %>
+          <div class="col text-center">
+            <h1>--お気に入りのおつまみはありません--</h1>
+          <div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        birthday: 生年月日
+        name: 名前
+      recipe:
+        recipe_image: 画像
+        title: おつまみ名
+        description: おつまみの説明
+        process: おつまみの作り方
+        alcohol_id: 合うお酒
+        food_id: 食材
+        making_time_id: 所要時間
+
+  activemodel:   # Formオブジェクトを用いた場合
+     attributes:
+       order_object:
+         post_code: 郵便番号
