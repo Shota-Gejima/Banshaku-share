@@ -25,11 +25,10 @@
                   <span><%="♥#{recipe.favorites.count} いいね" %></span>
                   <span class="comment ml-4"><%= "#{recipe.comments.count} コメント" %></span>
                 <% else %>
-                  <% if recipe.favorited_by?(current_user) %>
-                    <span><%= link_to "♥#{recipe.favorites.count} いいね", recipe_favorite_path(recipe), method: :delete, class: "text-dark" %></span>
-                  <% else %>
-                    <span><%= link_to "♡#{recipe.favorites.count} いいね", recipe_favorite_path(recipe), method: :post, class: "text-dark" %></span>
-                  <% end %>
+                  <!--非同期通信化-->
+                  <span id="favorite-buttons_<%= recipe.id %>">
+                    <%= render "public/favorites/favorite", recipe: recipe %>
+                  </span>
                   <span class="comment ml-4"><%= link_to "#{recipe.comments.count} コメント", recipe_path(recipe.id), class: "text-dark" %></span>
                 <% end %>
               </div>
