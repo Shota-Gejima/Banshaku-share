@@ -8,8 +8,12 @@ class Public::RecipesController < ApplicationController
   
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    @recipe.save
-    redirect_to recipes_path
+    if @recipe.save
+      redirect_to recipes_path
+    else
+      render :new
+    end
+    
   end
   
   def edit

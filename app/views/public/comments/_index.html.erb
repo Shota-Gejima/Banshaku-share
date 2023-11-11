@@ -1,0 +1,20 @@
+<% recipe.comments.each_slice(2) do |comments| %>
+  <div class="row">
+    <% comments.each do |comment| %>
+      <div class="col-6">
+        <div class="media mb-3">
+          <%= image_tag comment.user.get_profile_image(100, 100), class: "mr-3" %>
+          <div class="media-body">
+            <h5 class="mt-2"><%= comment.user.name %></h5>
+            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+            <p><%= comment.comment %></p>
+            <!--管理者かコメント投稿者しか消せないようにする-->
+            <% if current_admin || comment.user_id == current_user.id %>
+              <%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm", remote: true %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

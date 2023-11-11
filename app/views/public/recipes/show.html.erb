@@ -18,40 +18,19 @@
         </div>
       <% end %>
     </div>
-     <div class="col-6 mt-3">
-      <h4>コメント件数: <%= @recipe.comments.count %></h4>
-      <% @recipe.comments.each_slice(2) do |comments| %>
-        <div class="row">
-          <% comments.each do |comment| %>
-            <div class="col-6">
-              <div class="media mb-3">
-                <%= image_tag comment.user.get_profile_image(100, 100), class: "mr-3" %>
-                <div class="media-body">
-                  <h5 class="mt-2"><%= comment.user.name %></h5>
-                  <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-                  <p><%= comment.comment %></p>
-                  <!--管理者か投稿者しか消せないようにする-->
-                  <% if current_admin || @recipe.user_id == current_user.id %>
-                    <%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+    <div class="col-6 mt-3">
+      <div id="comment-counter">
+        <%= render "public/comments/counter", recipe: @recipe %>
+      </div>
+      <div id="comment-index">
+        <%= render "public/comments/index", recipe: @recipe %>
+      </div>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-6">
       <h4>コメントを追加</h4>
-      <%= form_with model: [@recipe, @comment] do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: "form-control" %>
-        </div>
-        <%= f.submit "送信する", class: "btn btn-primary" %>
-        <% end %>
-      </div>
+      <%= render "public/comments/form", recipe: @recipe, comment: @comment %>
     </div>
   </div>
 </div>
