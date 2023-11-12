@@ -9,6 +9,7 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
+      flash[:notice] = "保存に成功しました"
       redirect_to recipes_path
     else
       render :new
@@ -22,9 +23,15 @@ class Public::RecipesController < ApplicationController
   end
   
   def update
-    recipe = Recipe.find(params[:id])
-    recipe.update(recipe_params)
-    redirect_to recipes_path
+    @recipe = Recipe.find(params[:id])
+    
+    if @recipe.update(recipe_params)
+      flash[:notice] = "更新に成功しました"
+      redirect_to recipes_path
+    else
+      flash.now[:alert] = "未入力項目があり更新に失敗しました"
+      render :edit
+    end
   end
   
   def index
@@ -36,6 +43,7 @@ class Public::RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
+    # @comments = @recipe.comments.page(params[:page]).per(8).all
     @comment = Comment.new
   end
   

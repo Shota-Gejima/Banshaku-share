@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :is_matching_log_in_user, only: [:edit, :update]
   
   def show
     @user = User.find(params[:id])
@@ -14,11 +15,17 @@ class Public::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(current_user.id)
+    if user.update(user_params)
+      flash[:notice] = "変更に成功しました！"
+      redirect_to user_path(user.id)
+    else
+      flash.now[:alert] = "変更に失敗しました"
+      render :edit
+    end
   end
 
-  def confirm #退会確認画面を表示させるだけのため空欄
+  def confirm #退会確認画面
+    @user = User.find(params[:id])
   end
 
   def withdraw #退会機能（論理削除）
@@ -52,4 +59,16 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:profile_image, :name, :introduction)
   end
+  
+  #自分以外のユーザーのプロフィールは編集できないようにする
+  def is_matching_log_in_user
+    user = User.find(params[:id])
+    unless current_admin
+      unless user.id == current_user.id
+        flash[:alert] = "他ユーザーの編集画面には遷移できません"
+        redirect_to recipes_path
+      end
+    end
+  end
+  
 end

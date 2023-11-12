@@ -1,9 +1,9 @@
 <div class="container">
   <div class="texts-wrapper">
     <div class="contents-title">
-      <div class="row mt-5">
-        <div class="col-4 md-4 mt-4">
-          <%= image_tag @user.get_profile_image(150, 150), class: "img-thumbnail", size: "300x300" %>
+      <div class="row my-5">
+        <div class="col-3 md-4 mt-2">
+          <%= image_tag @user.get_profile_image(150, 150), class: " rounded-circle", size: "300x300" %>
         </div>
           <div class="col-8 md-4 mt-4">
             <table class="table table-borderless">
@@ -20,9 +20,9 @@
               </tr>
               <% if current_admin || @user.id == current_user.id %>
                 <tr>
-                  <th><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
-                  <td><%= link_to "フォロー一覧", follows_user_path(current_user), class: "btn btn-primary btn-sm" %>
-                  <%= link_to "フォロワー一覧", followers_user_path(current_user), class: "btn btn-primary btn-sm" %></td>
+                  <th><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-primary btn-sm" %></td>
+                  <td><%= link_to "フォロー一覧", follows_user_path(@user.id), class: "btn btn-primary btn-sm" %>
+                  <%= link_to "フォロワー一覧", followers_user_path(@user.id), class: "btn btn-primary btn-sm" %></td>
                 </tr>
               <% else %>
                 <tr>

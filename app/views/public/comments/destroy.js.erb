@@ -1,2 +1,2 @@
 $('#comment-counter').html("<%= j(render 'counter', recipe: @recipe) %>");
-$('#comment-index').html("<%= j(render 'index', recipe: @recipe) %>");
+$('#comment-index').html("<%= j(render 'index', recipe: @recipe, comments: @comments) %>");

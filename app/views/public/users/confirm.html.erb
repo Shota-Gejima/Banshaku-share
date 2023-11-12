@@ -9,7 +9,7 @@
       </p>
       <div class="">
         <%= link_to "退会する", user_withdraw_path, method: :patch, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
-        <%= link_to "退会しない", user_path(current_user), class: "btn btn-secondary ml-2" %>
+        <%= link_to "退会しない", user_path(@user), class: "btn btn-secondary ml-2" %>
       </div>
     </div>
   </div>

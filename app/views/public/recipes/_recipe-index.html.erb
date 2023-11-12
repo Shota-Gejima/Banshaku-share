@@ -1,44 +1,48 @@
-<!--<div class="row">-->
-  <!--< recipes.each_slice(3) do |recipe_group| %>-->
-    <% recipes.each do |recipe| %>
-      <div class="col-4">
-        <div class="card-link mx-auto mt-4 shadow-lg">
-          <%= link_to recipe_path(recipe.id) do %>
-            <%= image_tag recipe.get_recipe_image(500, 600), class: "card-img-top"; %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-2">
-                <%= image_tag recipe.user.get_profile_image(50, 50), class: "mt-3 rounded-circle" %>
-              </div>
-              <div class="col-10">
-                <p class="card-title">
-                  <%= link_to(recipe_path(recipe.id), class: "text-dark") do %>
-                    <strong><i class="far fa-flag"></i><span> <%= recipe.title %></span></strong>
-                  <% end %>
-                </p>
-                <p class="card-text">合うお酒：<%= recipe.alcohol.name %></p>
-                <p class="card-text">材料    ：<%= recipe.food.name %></p>
-                <p class="card-text">所要時間：<%= recipe.making_time.name %></p>
-                <span><i class="fas fa-user"></i> By <%= link_to recipe.user.name, user_path(recipe.user_id), class: "text-dark" %></span><br>
-                <% if admin_signed_in? %>
-                  <span><%="♥#{recipe.favorites.count} いいね" %></span>
-                  <span class="comment ml-4"><%= "#{recipe.comments.count} コメント" %></span>
-                <% else %>
-                  <!--非同期通信化-->
-                  <span id="favorite-buttons_<%= recipe.id %>">
-                    <%= render "public/favorites/favorite", recipe: recipe %>
-                  </span>
-                  <span class="comment ml-4"><%= link_to "#{recipe.comments.count} コメント", recipe_path(recipe.id), class: "text-dark" %></span>
+<% if recipes.present? %>
+  <% recipes.each do |recipe| %>
+    <div class="col-4">
+      <div class="card-link mx-auto mt-4 shadow-lg">
+        <%= link_to recipe_path(recipe.id) do %>
+          <%= image_tag recipe.get_recipe_image(500, 600), class: "card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2">
+              <%= image_tag recipe.user.get_profile_image(50, 50), class: "my-3 rounded-circle" %>
+            </div>
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(recipe_path(recipe.id), class: "text-dark") do %>
+                  <strong><i class="far fa-flag"></i><span> <%= recipe.title %></span></strong>
                 <% end %>
-              </div>
+              </p>
+              <p class="card-text">合うお酒：<%= recipe.alcohol.name %></p>
+              <p class="card-text">材料    ：<%= recipe.food.name %></p>
+              <p class="card-text">所要時間：<%= recipe.making_time.name %></p>
+              <span><i class="fas fa-user"></i> By <%= link_to recipe.user.name, user_path(recipe.user_id), class: "text-dark" %></span><br>
+              <% if admin_signed_in? %>
+                <span><%="♥#{recipe.favorites.count} いいね" %></span>
+                <span class="comment ml-4"><%= "#{recipe.comments.count} コメント" %></span>
+              <% else %>
+                <!--非同期通信化-->
+                <span id="favorite-buttons_<%= recipe.id %>">
+                  <%= render "public/favorites/favorite", recipe: recipe %>
+                </span>
+                <span class="comment ml-4"><%= link_to "#{recipe.comments.count} コメント", recipe_path(recipe.id), class: "text-dark" %></span>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-    <!--< end %>-->
+    </div>
   <% end %>
-<!--</div>-->
+<% else %>
+<div class="col-10">
+  <div class="d-flex align-items-center">
+    <h1 class="my-5">--まだ投稿されたおつまみはありません--</h1>
+  </div>
+</div>
+<% end %>
 <div class="mt-3 mx-auto">
   <%= paginate recipes %>
 </div>
