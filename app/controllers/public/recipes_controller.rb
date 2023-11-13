@@ -43,7 +43,7 @@ class Public::RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
-    # @comments = @recipe.comments.page(params[:page]).per(8).all
+    @comments = @recipe.comments.page(params[:page]).per(8)
     @comment = Comment.new
   end
   
@@ -70,6 +70,6 @@ class Public::RecipesController < ApplicationController
   end
   
   def search_recipe
-  @q = Recipe.ransack(params[:q])
+    @q = Recipe.ransack(params[:q])
   end
 end

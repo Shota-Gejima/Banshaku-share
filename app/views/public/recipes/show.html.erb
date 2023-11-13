@@ -24,6 +24,9 @@
       </div>
       <div id="comment-index">
         <%= render "public/comments/index", recipe: @recipe, comments: @comments %>
+        <div class="mt-3 mx-auto">
+          <%= paginate @comments %>
+        </div>
       </div>
     </div>
   </div>

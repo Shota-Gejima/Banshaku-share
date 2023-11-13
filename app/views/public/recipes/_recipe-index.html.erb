@@ -1,6 +1,6 @@
 <% if recipes.present? %>
   <% recipes.each do |recipe| %>
-    <div class="col-4">
+    <div class="col-4 my-3">
       <div class="card-link mx-auto mt-4 shadow-lg">
         <%= link_to recipe_path(recipe.id) do %>
           <%= image_tag recipe.get_recipe_image(500, 600), class: "card-img-top"; %>
@@ -37,7 +37,7 @@
     </div>
   <% end %>
 <% else %>
-<div class="col-10">
+<div class="col-10 my-3">
   <div class="d-flex align-items-center">
     <h1 class="my-5">--まだ投稿されたおつまみはありません--</h1>
   </div>
