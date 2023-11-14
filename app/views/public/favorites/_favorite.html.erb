@@ -1,5 +1,9 @@
 <% if recipe.favorited_by?(current_user) %>
-  <%= link_to "♥#{recipe.favorites.count} いいね", recipe_favorite_path(recipe), method: :delete, remote: true, class: "text-dark" %>
+  <%= link_to(recipe_favorite_path(recipe), method: :delete, remote: true, class: "text-dark") do %>
+    <strong><i class="fa-solid fa-heart mr-2"></i><%= recipe.favorites.count %></strong>
+  <% end %>
 <% else %>
-  <%= link_to "♡#{recipe.favorites.count} いいね", recipe_favorite_path(recipe), method: :post, remote: true, class: "text-dark" %>
+  <%= link_to(recipe_favorite_path(recipe), method: :post, remote: true, class: "text-dark") do %>
+    <strong><i class="fa-regular fa-heart mr-2"></i><%= recipe.favorites.count %></strong>
+  <% end %>
 <% end %>

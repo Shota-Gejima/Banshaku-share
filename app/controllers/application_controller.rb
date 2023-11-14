@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!, except: [:top,:about]
-  # before_action :authenticate_admin!, except: [:top,:about]
+  before_action :authenticate_user!, unless: :admin_check, except: [:top,:about]
+  # before_action :authenticate_admin!, if: :admin_check
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def after_sign_in_path_for(resource)
@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :birthday])
   end
   
+  # 管理者はアクセスに制限かけない
+  def admin_check
+    admin_signed_in?
+  end
 end

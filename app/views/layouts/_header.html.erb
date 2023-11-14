@@ -13,36 +13,43 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to '投稿フォーム', new_recipe_path, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'マイページ', user_path(current_user), class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'おつまみ一覧', recipes_path, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <% elsif admin_signed_in? %>
-          <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
-          <li class="nav-item"><%= link_to "レシピ一覧", recipes_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
-        
-        
-        <% else %>
-        <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "About", about_path, class: "btn btn-outline-light text-light nav-link ml-2" %>
-        </li>
-        <% end %>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to(destroy_user_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <strong><i class="fa-solid fa-sign-out-alt"></i><span>ログアウト</span></strong>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(user_path(current_user), class: "btn btn-outline-light text-light nav-link ml-2" ) do %>
+                <strong><i class="fa-regular fa-user"></i><span>マイページ</span></strong>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(recipes_path, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <strong><i class="fa-solid fa-utensils"></i></i><span>おつまみ一覧</span></strong>
+              <% end %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "レシピ一覧", recipes_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to(new_user_registration_path, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <strong><i class="fa-solid fa-user-plus"></i><span>新規登録</span></strong>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(new_user_session_path, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <strong><i class="fa-solid fa-sign-in-alt"></i><span>ログイン</span></strong>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(about_path, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <strong><i class="fa-solid fa-link"></i><span>About</span></strong>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
