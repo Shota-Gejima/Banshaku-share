@@ -35,7 +35,8 @@ class Public::RecipesController < ApplicationController
   end
   
   def index
-    @recipes = Recipe.order("created_at DESC").page(params[:page])
+    @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
+    # @recipes = Recipe.order("created_at DESC").page(params[:page])
     # @alcohols = Alcohol.all
     # @foods = Food.all
     # @making_time = MakingTime.all

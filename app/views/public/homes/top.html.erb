@@ -1,11 +1,36 @@
-<div class="jumbotron" style="margin-bottom: 0;">
-  <div class='index-content text-center'>
-    <h1 class='home-index'>いつものBanshakuを共有しよう!</h1>
+<!--<div class="jumbotron" style="margin-bottom: 0;">-->
+  <!--<div class='index-content text-center'>-->
+    <!--<h1 class='home-index'>いつものBanshakuを共有しよう!</h1>-->
 
-    <div class='index-btn d-flex justify-content-around'>
-      <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
+    
+  <!--</div>-->
+<!--</div>-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 mt-5">
+      <%= render 'slide' %>
+      <div class='index-btn d-flex justify-content-around'>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in" %>
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in" %>
+      </div>
     </div>
+  </div>
+  <h3 class="mt-2">新着のおつまみ</h3>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-3 lg-4 mt-3"> 
+        <div class="card w-100 bg-transparent border-0">
+          <%= link_to recipe_path(recipe.id) do %>
+            <%= image_tag recipe.get_recipe_image(150, 100) %>
+          <% end %>
+          <div class="card-body" style="padding: 0;">
+            <%= recipe.title %></br>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

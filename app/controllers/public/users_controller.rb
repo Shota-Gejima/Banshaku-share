@@ -3,7 +3,8 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.page(params[:page])
+    @recipes = Recipe.includes(:user).page(params[:page])
+    # @recipes = @user.recipes.page(params[:page])
   end
 
   def edit
