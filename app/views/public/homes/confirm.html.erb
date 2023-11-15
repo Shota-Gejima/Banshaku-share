@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10-md-7 mx-auto">
+      <h1 class="mt-4 mb-4">年齢確認</h1>
+      <h4>
+        未成年者の飲酒は法律で禁止されております。<br>
+        このコミュニティサイトは晩酌愛好家のためのサイトとなっております。<br>
+        未成年の方はご利用になられません。
+      </h4>
+      <h2 class="my-4">あなたは20歳以上ですか？</h2>
+      <div class="">
+        
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= link_to users_guest_sign_in_path, method: :post  do %>
+            <button class="btn btn-primary" type="button" style="width:40%;">はい</button>
+          <% end %>
+          <%= link_to root_path do %>
+            <button class="btn btn-danger" type="button" style="width:40%">いいえ</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

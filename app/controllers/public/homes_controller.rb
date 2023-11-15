@@ -7,6 +7,6 @@ class Public::HomesController < ApplicationController
   def about
   end
   
-  def verified
+  def confirm
   end
 end

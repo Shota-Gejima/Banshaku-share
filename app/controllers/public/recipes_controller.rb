@@ -14,17 +14,14 @@ class Public::RecipesController < ApplicationController
     else
       render :new
     end
-    
   end
   
   def edit
     @recipe = Recipe.find(params[:id])
-    
   end
   
   def update
     @recipe = Recipe.find(params[:id])
-    
     if @recipe.update(recipe_params)
       flash[:notice] = "更新に成功しました"
       redirect_to recipes_path
@@ -36,16 +33,17 @@ class Public::RecipesController < ApplicationController
   
   def index
     @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
-    # @recipes = Recipe.order("created_at DESC").page(params[:page])
-    # @alcohols = Alcohol.all
-    # @foods = Food.all
-    # @making_time = MakingTime.all
   end
   
   def show
     @recipe = Recipe.find(params[:id])
     @comments = @recipe.comments.page(params[:page]).per(8)
     @comment = Comment.new
+    if user_signed_in?
+      unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(recipe_id: @recipe.id, user_id: current_user)
+        current_user.read_counts.create!(recipe_id: @recipe.id)
+      end
+    end
   end
   
   def destroy

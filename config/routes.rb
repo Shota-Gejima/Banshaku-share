@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   #会員側
   scope module: :public do
   root to: 'homes#top'
+  get 'confirm' => 'homes#confirm'
   get 'about' => 'homes#about'
   get 'verify_age' => 'homes#verify_age'
   get '/recipe/search', to: "recipes#search"

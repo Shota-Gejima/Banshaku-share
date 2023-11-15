@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :read_counts, dependent: :destroy
   
   #フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
@@ -36,12 +37,18 @@ class User < ApplicationRecord
     super && (is_deleted == false) # is_deletedがfalseならtrueを返す
   end
   
+  # ゲストユーザー作成
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
       user.birthday = 2000-11-9 
     end
+  end
+  
+  # ゲストユーザーか判定
+  def guest_user?
+    email == "guest@example.com"
   end
   
 # 生年月日から年齢を計算する
@@ -51,6 +58,14 @@ class User < ApplicationRecord
     age = today.year - birthday.year
     age -= 1 if today < this_years_birthday
     age
+  end
+  
+  def total_views
+    recipes.joins(:read_counts).count
+  end
+  
+  def total_favorites
+    recipes.joins(:favorites).count
   end
   
 end

@@ -32,6 +32,7 @@
                   <span class="comment ml-4"><%= link_to(recipe_path(recipe.id), class: "text-dark") do %></span>
                     <strong><i class="fa-regular fa-comments mr-2"></i><%= recipe.comments.count %></strong>
                   <% end %>
+                  <span class="read-count ml-4"><strong><i class="fa-solid fa-eye"></i><%= recipe.read_counts.count %></strong></span>
                 </p>
               <% end %>
             </div>

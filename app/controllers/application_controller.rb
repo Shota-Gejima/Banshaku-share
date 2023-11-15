@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, unless: :admin_check, except: [:top,:about]
+  before_action :authenticate_user!, unless: :admin_check, except: [:top,:about, :confirm]
   # before_action :authenticate_admin!, if: :admin_check
   before_action :configure_permitted_parameters, if: :devise_controller?
   

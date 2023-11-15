@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :read_counts, dependent: :destroy
   
   validates :recipe_image, presence: true
   validates :title, presence: true
@@ -31,6 +32,9 @@ class Recipe < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  def total_view(user)
+    user.read_counuts.count
+  end
   
   def self.ransackable_attributes(auth_object = nil) #どの属性を検索可能にするかを明示的に制御している
     ["alcohol_id", "created_at", "description", "food_id", "id", "making_time_id", "process", "title", "updated_at", "user_id"]
