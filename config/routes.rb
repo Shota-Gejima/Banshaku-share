@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'comments/index'
+    get 'comments/destroy'
+  end
   namespace :public do
     get 'relationships/create'
     get 'relationships/destroy'

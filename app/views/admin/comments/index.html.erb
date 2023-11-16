@@ -1,0 +1,20 @@
+<h1>Admin::Comments#index</h1>
+<p>Find me in app/views/admin/comments/index.html.erb</p>
+<% @comments.each do |comment|  %>
+  <table>
+    <thead>
+      <th>名前</th>
+      <th>コメントした日</th>
+      <th>コメント</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <td><%= @user.name %></td>
+      <td><%= comment.created_at %></td>
+      <td><%= comment.comment %></td>
+      <td><%= link_to "削除する", admin_user_comment_path(@user.id, comment.id), method: :delete, class: "btn btn-danger" %> </td>
+    </tbody>
+  </table>
+  
+  
+<% end %>

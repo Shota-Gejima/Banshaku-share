@@ -20,6 +20,10 @@ class Admin::UsersController < ApplicationController
      redirect_to admin_user_path(user)
   end
   
+  def comments
+    
+  end
+  
   private
   
   def user_params
