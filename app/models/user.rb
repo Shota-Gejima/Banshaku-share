@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :birthday, presence: { message: 'を選択してください' }
-  validates :name, presence: { message: 'を入力してください' }
+  validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
   has_one_attached :profile_image
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -59,11 +59,11 @@ class User < ApplicationRecord
     age -= 1 if today < this_years_birthday
     age
   end
-  
+  # 総閲覧数
   def total_views
     recipes.joins(:read_counts).count
   end
-  
+  # 総いいね数
   def total_favorites
     recipes.joins(:favorites).count
   end

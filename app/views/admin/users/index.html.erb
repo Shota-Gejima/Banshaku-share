@@ -5,9 +5,6 @@
       <h3> 会員一覧</h3>
     </div><br>
   </div>
-  <%= render "layouts/flash" %>
-  <!--<div class="row">-->
-    <!--<div class="col-9 mx-auto">-->
       <table class="table">
         <thead>
           <tr class="bg-brown">
@@ -26,7 +23,7 @@
             <td><%= link_to user.name, admin_user_path(user.id), class:"link-order-customer" %></td>
             <td><%= user.email %></td>
             <td><%= user.recipes.count %></td>
-            <td><%= link_to user.comments.count, admin_user_comments_path(user.id) %></td>
+            <td><%= user.comments.count %></td>
             <td>
              <% if user.is_deleted == false %>
               <p class="text-success">有効</p>

@@ -4,11 +4,6 @@
       <h3>会員詳細</h3>
     </div>
   </div>
-  <% if flash[:notice].present? %>
-   <div class="alert alert-success">
-     <%= flash[:notice] %>
-   </div>
-  <% end %>
   <div class="row">
     <div class="col-10">
       <table class="table table-borderless">
@@ -37,11 +32,39 @@
           <% end %>
         </tr>
         <tr>
-          <td></td>
-          <td><%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success btn-lg" %></td>
-          <!--<td><= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary btn-lg" %></td>-->
+          <td><%= link_to "会員側詳細ページ", user_path(@user), class:"btn btn-primary" %></td>
+          <td><%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success" %></td>
         </tr>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <table class= "table">
+        <thead>
+          <tr>
+            <th style="width: 15%">名前</th>
+            <th style="width: 15%">コメントした日</th>
+            <th style="width: 15%">おつまみ名</th>
+            <th style="width: 40%">コメント</th>
+            <th style="width: 15%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment|  %>
+            <tr>
+              <td><%= @user.name %></td>
+              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= comment.recipe.title %></td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center m-3 custom-pagination">
+        <%= paginate @comments %>
+      </div>
     </div>
   </div>
 </div>

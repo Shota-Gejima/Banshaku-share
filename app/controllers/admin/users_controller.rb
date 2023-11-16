@@ -7,6 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @comments = @user.comments.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def edit
@@ -18,10 +19,6 @@ class Admin::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
      redirect_to admin_user_path(user)
-  end
-  
-  def comments
-    
   end
   
   private
