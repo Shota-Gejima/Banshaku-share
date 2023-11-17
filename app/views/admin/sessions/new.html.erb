@@ -1,32 +1,25 @@
 <div class="container">
   <div class="row">
-   <div class="mx-auto col-6 mt-5">
-     <div class="bg-brown col-5">
-      <h4>管理者ログイン</h4>
-     </div>
-     <!--< if flash[:notice].present? %>-->
-       <!--<div class="alert alert-success">-->
-         <!--<%= flash[:notice] %>-->
-       <!--</div>-->
-      <!--< end %>-->
-   <%= form_with model: @admin, url: admin_session_path do |f| %>
-     <table class="table table-borderless">
-      <tr>
-       <td><%= f.label :email, "メールアドレス" %></td>
-       <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></td>
-      </tr>
-
-      <tr>
-       <td><%= f.label :password, "パスワード" %></td>
-       <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>
-      </tr>
-
-      <tr>
-        <td></td>
-       <td><%= f.submit "ログイン", class:"btn btn-primary" %></td>
-      </tr>
-     </table>
-    <% end %>
+    <div class="mx-auto col-6 mt-5">
+      <div class="bg-brown col-5">
+        <h4>管理者ログイン</h4>
+      </div>
+      <%= form_with model: @admin, url: admin_session_path do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :password, "パスワード" %></td>
+           <td><%= f.password_field :password, autocomplete: "current-password", class:"form-control" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "ログイン", class:"btn btn-primary" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
   </div>
- </div>
 </div>
