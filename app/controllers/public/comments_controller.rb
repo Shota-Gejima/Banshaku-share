@@ -8,7 +8,6 @@ class Public::CommentsController < ApplicationController
       flash[:alert] = "1文字以上50文字以内で入力してください"
       redirect_to request.referer
     end
-    
   end
   
   def destroy

@@ -51,6 +51,7 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @comments = @recipe.comments.page(params[:page]).per(8)
     @comment = Comment.new
+    # 管理者が閲覧してもカウントされない
     if user_signed_in?
       unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(recipe_id: @recipe.id, user_id: current_user)
         current_user.read_counts.create!(recipe_id: @recipe.id)
@@ -60,8 +61,10 @@ class Public::RecipesController < ApplicationController
   
   def destroy
     recipe = Recipe.find(params[:id])
-    recipe.destroy
-    redirect_to recipes_path
+    if recipe.destroy
+      flash[:notice] = "削除に成功しました"
+      redirect_to recipes_path
+    end
   end
   
   def search
@@ -80,7 +83,9 @@ class Public::RecipesController < ApplicationController
     params.require(:recipe).permit(:recipe_image, :alcohol_id, :food_id, :making_time_id, :title, :description, :process)
   end
   
+  # 検索機能
   def search_recipe
     @q = Recipe.ransack(params[:q])
   end
+  
 end
