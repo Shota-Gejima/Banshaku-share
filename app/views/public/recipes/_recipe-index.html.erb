@@ -1,11 +1,11 @@
 <% if recipes.present? %>
   <% recipes.each do |recipe| %>
-    <div class="col-4 my-3">
+    <div class="col-4 mb-3">
       <div class="card-link mx-auto mt-4 shadow-lg">
         <%= link_to recipe_path(recipe.id) do %>
           <%= image_tag recipe.get_recipe_image(500, 600), class: "card-img-top"; %>
         <% end %>
-        <div class="card-body">
+        <div class="card-body" style="background-color: white;">
           <div class="row">
             <div class="col-2">
               <%= image_tag recipe.user.get_profile_image(50, 50), class: "my-3 rounded-circle" %>

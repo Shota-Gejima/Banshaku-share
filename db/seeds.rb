@@ -9,7 +9,7 @@ Admin.create!(email: "admin@example.com", password: "111111")
 
 #疑似的にユーザーを作成
 require 'faker'
-10.times do |n|
+20.times do |n|
   name = Gimei.name.kanji
   email = Faker::Internet.email
   password = 'test1234TEST'
@@ -32,8 +32,8 @@ Faker::Config.locale = 'ja'
 20.times do
   Recipe.create!(
     user_id: rand(1..12),
-    alcohol_id: rand(1..5),
-    food_id: rand(1..5),
+    alcohol_id: rand(1..9),
+    food_id: rand(1..10),
     making_time_id: rand(1..5),
     title: Faker::Food.dish,
     description: Faker::Food.description,

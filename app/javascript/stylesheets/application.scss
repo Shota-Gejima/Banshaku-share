@@ -10,6 +10,7 @@ body {
   min-height: 100vh; /* ビューポートの高さに対して最低でも100%にする */
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 100;
+  background-color: #D9E5FF;
 }
 
 .main-bg {
@@ -77,6 +78,7 @@ footer {
 
 .form-word {
   color: red;
+  font-weight: bold;
 }
 
 /*ページネーション自体のデザイン*/

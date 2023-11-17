@@ -5,8 +5,13 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :read_counts, dependent: :destroy
+  # favoriteモデルを介していいねしたユーザーを取り出す
+  has_many :favorited_users, through: :favorites, source: :user
+  # read_countモデルを介して閲覧したしたユーザーを取り出す
+  has_many :viewed_users, through: :read_counts, source: :user
+ 
   
-  validates :recipe_image, presence: true
+  # validates :recipe_image, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :process, presence: true
@@ -14,6 +19,15 @@ class Recipe < ApplicationRecord
   validates :food_id, presence: true
   validates :making_time_id, presence: true
 
+  # 並び替え機能
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :most_favorited, -> {includes(:favorited_users)
+    .sort_by {|x| x.favorited_users.includes(:favorites).size }. reverse }
+  scope :most_viewed, -> {includes(:viewed_users)
+    .sort_by {|x| x.viewed_users.includes(:read_counts).size }. reverse }
+  
+  
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :alcohol

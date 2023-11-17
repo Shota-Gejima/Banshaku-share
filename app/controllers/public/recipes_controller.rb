@@ -32,7 +32,19 @@ class Public::RecipesController < ApplicationController
   end
   
   def index
-    @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
+    if params[:latest]
+      @recipes = Recipe.latest.page(params[:page])
+    elsif params[:old]
+      @recipes = Recipe.old.page(params[:page])
+    elsif params[:most_favorited]
+      recipes = Recipe.most_favorited
+      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+    elsif params[:most_viewed]
+      recipes = Recipe.most_viewed
+      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+    else
+      @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
+    end
   end
   
   def show

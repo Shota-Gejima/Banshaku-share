@@ -1,14 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-10-md-7 mx-auto">
-      <h1 class="mt-4 mb-4">年齢確認</h1>
+    <div class="confirm-bg col-10-md-7 mx-auto my-5">
+      <h1 class="mb-4">年齢確認</h1>
       <h4>
         未成年者の飲酒は法律で禁止されております。<br>
         このコミュニティサイトは晩酌愛好家のためのサイトとなっております。<br>
         未成年の方はご利用になられません。
       </h4>
-      <h2 class="my-5">あなたは20歳以上ですか？</h2>
-      <div class="d-grid gap-2 col-6 mx-auto">
+      <div class="d-grid gap-2 col-6 mx-auto text-center">
+        <%= image_tag 'under_20_years_old.jpg', size: "220x220", class:"d-block my-3 mx-auto" %>
+        <h2 class="my-3 font-weight-bold">あなたは20歳以上ですか？</h2>
         <%= link_to users_guest_sign_in_path, method: :post  do %>
           <button class="btn btn-primary" type="button" style="width:40%;">はい</button>
         <% end %>
@@ -16,11 +17,10 @@
           <button class="btn btn-danger" type="button" style="width:40%">いいえ</button>
         <% end %>
       </div>
-      <h4 class="form-word mt-5">
+      <h4 class="form-word mt-5 font-weight-bold">
         ゲストログイン中は、投稿、いいね、フォローなどのアクションが<br>
         一時的なものであり、ログアウト後にはデータは残りませんのでご注意ください。
       </h4>
     </div>
-    
   </div>
 </div>
