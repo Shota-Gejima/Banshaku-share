@@ -1,11 +1,10 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_log_in_user, only: [:edit, :update]
-  before_action :ensure_guest_user, only: [:edit, :update, :confirm, :follows, :followers]
+  before_action :ensure_guest_user, only: [:edit, :update]
   
   def show
     @user = User.find(params[:id])
     @recipes = @user.recipes.includes(:user).page(params[:page])
-    # @recipes = @user.recipes.page(params[:page])
   end
 
   def edit

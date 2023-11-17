@@ -27,8 +27,8 @@ class User < ApplicationRecord
   
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
+      file_path = Rails.root.join('app/assets/images/no_image_user.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'no_image_user.jpg', content_type: 'image/jpg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
@@ -42,7 +42,8 @@ class User < ApplicationRecord
     find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
-      user.birthday = 2000-11-9 
+      user.birthday = Date.new(1980, 11, 11)
+      user.introduction = "ゲストユーザです。よろしくお願いします。"
     end
   end
   

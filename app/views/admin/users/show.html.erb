@@ -50,17 +50,21 @@
             <th style="width: 15%"></th>
           </tr>
         </thead>
-        <tbody>
-          <% @comments.each do |comment|  %>
-            <tr>
-              <td><%= @user.name %></td>
-              <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= comment.recipe.title %></td>
-              <td><%= comment.comment %></td>
-              <td><%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %></td>
-            </tr>
-          <% end %>
-        </tbody>
+        <% if @comments.present? %> 
+          <tbody>
+            <% @comments.each do |comment|  %>
+              <tr>
+                <td><%= @user.name %></td>
+                <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= comment.recipe.title %></td>
+                <td><%= comment.comment %></td>
+                <td><%= link_to "削除する", recipe_comment_path(comment.recipe_id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <td colspan="5" class="text-center" style="font-size: 30px;">まだコメントされていません</td>
+        <% end %>
       </table>
       <div class="d-flex justify-content-center m-3 custom-pagination">
         <%= paginate @comments %>

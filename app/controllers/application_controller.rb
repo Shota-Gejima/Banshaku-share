@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :birthday])
   end
   
-  # 管理者はアクセスに制限かけない
+  # 管理者か判定
   def admin_check
     admin_signed_in?
   end

@@ -19,19 +19,23 @@
               <th colspan="2"><%= link_to "お気に入りのおつまみ", favorites_user_path(@user.id) %></th>
             </tr>
             <% if current_admin || @user.id == current_user.id %>
-              <% unless @user.guest_user? %>
-                <tr>
-                  <th><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-primary btn-sm" %></td>
-                  <td><%= link_to "フォロー一覧", follows_user_path(@user.id), class: "btn btn-primary btn-sm" %>
-                  <%= link_to "フォロワー一覧", followers_user_path(@user.id), class: "btn btn-primary btn-sm" %></td>
-                </tr>
-              <% end %>
+              <tr>
+                <% unless @user.guest_user? %>
+                  <th><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-primary btn-sm" %></th>
+                <% else %>
+                  <th></th>
+                <% end %>
+                <td>
+                  <%= link_to "フォロー一覧", follows_user_path(@user.id), class: "btn btn-primary btn-sm" %>
+                  <%= link_to "フォロワー一覧", followers_user_path(@user.id), class: "btn btn-primary btn-sm ml-3" %>
+                </td>
+              </tr>
             <% else %>
               <tr>
                 <th id="relationship-buttons_<%= @user.id %>" colspan="2">
                   <%= render "public/relationships/relationship", user: @user %>
                 </th>
-              </div>
+              </tr>
             <% end %>
           </table>
         </div>

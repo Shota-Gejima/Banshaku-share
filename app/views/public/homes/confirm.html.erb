@@ -7,18 +7,20 @@
         このコミュニティサイトは晩酌愛好家のためのサイトとなっております。<br>
         未成年の方はご利用になられません。
       </h4>
-      <h2 class="my-4">あなたは20歳以上ですか？</h2>
-      <div class="">
-        
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <%= link_to users_guest_sign_in_path, method: :post  do %>
-            <button class="btn btn-primary" type="button" style="width:40%;">はい</button>
-          <% end %>
-          <%= link_to root_path do %>
-            <button class="btn btn-danger" type="button" style="width:40%">いいえ</button>
-          <% end %>
-        </div>
+      <h2 class="my-5">あなたは20歳以上ですか？</h2>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <%= link_to users_guest_sign_in_path, method: :post  do %>
+          <button class="btn btn-primary" type="button" style="width:40%;">はい</button>
+        <% end %>
+        <%= link_to root_path do %>
+          <button class="btn btn-danger" type="button" style="width:40%">いいえ</button>
+        <% end %>
       </div>
+      <h4 class="form-word mt-5">
+        ゲストログイン中は、投稿、いいね、フォローなどのアクションが<br>
+        一時的なものであり、ログアウト後にはデータは残りませんのでご注意ください。
+      </h4>
     </div>
+    
   </div>
 </div>
