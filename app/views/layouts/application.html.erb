@@ -9,21 +9,17 @@
     <script src="https://kit.fontawesome.com/95b647ef78.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&family=M+PLUS+Rounded+1c:wght@300&family=Noto+Sans+JP:wght@200&family=Noto+Serif+JP:wght@700&family=Zen+Kaku+Gothic+New:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&family=M+PLUS+Rounded+1c:
+    wght@300&family=Noto+Sans+JP:wght@200&family=Noto+Serif+JP:wght@700&family=Zen+Kaku+Gothic+New:wght@300&display=swap" rel="stylesheet">
   </head>
-
   <body>
-    <!--<header>-->
-      <%= render 'layouts/header' %>
-    <!--</header>-->
+    <%= render 'layouts/header' %>
     <main class="main-bg">
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
     </main>
-    <footer>
       <%= render 'layouts/footer' %>
-    </footer>
   </body>
 </html>

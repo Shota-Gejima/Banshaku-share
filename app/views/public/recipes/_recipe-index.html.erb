@@ -20,7 +20,8 @@
               <p class="card-text">材料    ：<%= recipe.food.name %></p>
               <p class="card-text">所要時間：<%= recipe.making_time.name %></p>
               <span><i class="fas fa-user"></i> By <%= link_to recipe.user.name, user_path(recipe.user_id), class: "text-dark" %></span><br>
-              <% if admin_signed_in? %>
+              <!--管理者またはtopページではいいねさせない-->
+              <% if admin_signed_in? || current_page?(root_path) %>
                 <p class="card-text">
                   <span><i class="fa-regular fa-heart"></i><%="#{recipe.favorites.count}" %></span>
                   <span class="comment ml-4"><i class="fa-regular fa-comments mr-2"></i><%= "#{recipe.comments.count}" %></span>

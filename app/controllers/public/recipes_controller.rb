@@ -34,16 +34,21 @@ class Public::RecipesController < ApplicationController
   def index
     if params[:latest]
       @recipes = Recipe.latest.page(params[:page])
+      @sort_order = "新着順"
     elsif params[:old]
       @recipes = Recipe.old.page(params[:page])
+      @sort_order = "古い順"
     elsif params[:most_favorited]
       recipes = Recipe.most_favorited
       @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+      @sort_order = "いいねが多い順"
     elsif params[:most_viewed]
       recipes = Recipe.most_viewed
       @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+      @sort_order = "閲覧数が多い順"
     else
       @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
+      @sort_order = "新着順"
     end
   end
   

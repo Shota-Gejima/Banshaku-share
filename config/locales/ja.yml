@@ -17,7 +17,6 @@ ja:
      attributes:
        order_object:
          post_code: 郵便番号
-ja:
   views:
     pagination:
       first: "&laquo; 最初"

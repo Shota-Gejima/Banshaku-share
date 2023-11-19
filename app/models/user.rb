@@ -3,8 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :birthday, presence: { message: 'を選択してください' }
-  validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
   has_one_attached :profile_image
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -19,6 +17,17 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :following
+  
+  # favoriteモデルを介していいねされたおつまみを取り出す
+  # has_many :favorited_recipes, through: :favorites, source: :recipe
+  
+  validates :birthday, presence: { message: 'を選択してください' }
+  validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
+  validates :introduction, allow_blank: true, length: { in: 1..50, message: 'は50文字以内で入力してください' }
+  
+  # いいねされたおつまみの多い順
+  # scope :most_favorited_recipes, -> {includes(:favorited_recipes)
+    # .sort_by {|x| x.favorited_recipes.includes(:favorites).size }. reverse }
   
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
