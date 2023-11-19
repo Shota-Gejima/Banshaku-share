@@ -16,7 +16,7 @@
           <tr>
             <td style="width: 40%"><%= f.label :birthday, "生年月日" %></br> ※20歳未満の方はご利用になられません</br>※後から変更はできません</td>
             <td style="text-align: left; vertical-align: middle;">
-              <%= f.date_select :birthday, {start_year: 1950, end_year: (Time.now.year - 20),
+              <%= f.date_select :birthday, {start_year: 1950, end_year: (Time.now.year - 10),
                 include_blank: true, use_two_digit_numbers: true},{class: "input-tab birthday-select form-control mx-2", style: 'display: inline-block;width:auto;'} %>
             </td>
           </tr>

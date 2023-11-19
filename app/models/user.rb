@@ -24,10 +24,19 @@ class User < ApplicationRecord
   validates :birthday, presence: { message: 'を選択してください' }
   validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
   validates :introduction, allow_blank: true, length: { in: 1..50, message: 'は50文字以内で入力してください' }
+  # 20歳未満は登録させないカスタムバリデーション
+  validate :age_should_be_over_20, if: -> { birthday.present? }
   
   # いいねされたおつまみの多い順
   # scope :most_favorited_recipes, -> {includes(:favorited_recipes)
     # .sort_by {|x| x.favorited_recipes.includes(:favorites).size }. reverse }
+    
+  # 20歳未満は登録させないカスタムメソッド
+  def age_should_be_over_20
+    if age < 20
+      errors.add(:birthday, "は20歳未満は登録できません")
+    end
+  end
   
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
@@ -42,8 +51,9 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  # is_deletedがfalseならtrueを返す
   def active_for_authentication?
-    super && (is_deleted == false) # is_deletedがfalseならtrueを返す
+    super && (is_deleted == false)
   end
   
   # ゲストユーザー作成
@@ -69,10 +79,12 @@ class User < ApplicationRecord
     age -= 1 if today < this_years_birthday
     age
   end
+  
   # 総閲覧数
   def total_views
     recipes.joins(:read_counts).count
   end
+  
   # 総いいね数
   def total_favorites
     recipes.joins(:favorites).count
