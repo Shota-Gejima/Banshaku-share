@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col text-center m-3">
     <%- if controller_name != 'sessions' %>
-      <h4 class="bg-brown col-4 my-3 mx-auto">既に登録済みの方</h4>
+      <h4 class="col-4 my-3 mx-auto">既に登録済みの方</h4>
       <%= link_to "こちら", new_session_path(resource_name) %>　からログインしてください。
     <% end %>
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <h4 class="bg-brown col-4 my-3 mx-auto">会員登録がお済みでない方</h4>
+      <h4 class="col-4 my-3 mx-auto">会員登録がお済みでない方</h4>
        <%= link_to "こちら", new_registration_path(resource_name) %>　から新規登録を行ってください。
     <% end %>
   </div>

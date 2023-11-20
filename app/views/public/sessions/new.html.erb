@@ -1,11 +1,10 @@
 <div class="container">
-  <!--<= render 'public/orders/flash' %>-->
-  <div class="row p-5 text-center">
-    <div class="mx-auto p-5 mt-3">
-      <div class="bg-brown col-6 mx-auto">
-        <h2>ログイン</h2>
-      </div>
-      <div class="bg-brown col-12 mx-auto">
+  <div class="row">
+    <h2 class="bg-brown mt-5 mx-auto">ログイン</h2>
+  </div>
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <div class="col-12 mx-auto">
         <p class="my-3">会員の方はこちらからログインしてください</p>
       </div>
       <%= form_with model: @user, url: new_user_session_path do |f| %>

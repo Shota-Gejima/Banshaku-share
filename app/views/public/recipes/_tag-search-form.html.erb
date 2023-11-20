@@ -2,12 +2,13 @@
   <div class="genre-search-table-container">
     <table class="table table-borderless m-0 p-0 genre_search_table">
       <tr>
-        <th class="genre_search_head bg-brown"><i class="fa-solid fa-magnifying-glass"></i>タグ検索</th>
+        <th class="genre_search_head"><i class="fa-solid fa-magnifying-glass"></i>タグ検索</th>
         <td><%= f.collection_select :alcohol_id_eq, Alcohol.where.not(id: 0), :id, :name, include_blank: "アルコール検索", class: "form-control" %></td>
         <td><%= f.collection_select :food_id_eq, Food.where.not(id: 0), :id, :name, include_blank: "材料検索", class: "form-control" %></td>
         <td><%= f.collection_select :making_time_id_eq, MakingTime.where.not(id: 0), :id, :name, include_blank: "所要時間検索", class: "form-control" %></td>
-        <td><%= f.button class: 'btn btn-primary' do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
+        <td>
+          <%= f.button class: 'btn btn-primary' do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
         </td>
       </tr>

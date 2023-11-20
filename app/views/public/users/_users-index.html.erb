@@ -2,7 +2,7 @@
   <% if users.present? %>
     <table class="table">
       <thead>
-        <tr class="bg-brown">
+        <tr class="bg-table">
           <th style="width: 10%"></th>
           <th style="width: 15%">名前</th>
           <th style="width: 10%">年齢</th>
@@ -14,27 +14,27 @@
       </thead>
       <tbody>
         <% users.each do |user| %>
-        <tr>
-          <td class="text-center"><%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %></td>
-          <td><%= link_to user.name, user_path(user.id), class:"link-order-customer" %></td>
-          <td><%= user.age %> 歳</td>
-          <td><%= user.recipes.count %></td>
-          <td><%= user.passive_relationships.count %></td>
-          <td><%= user.total_favorites %></td>
-          <td><%= user.total_views %></td>
-        </tr>
-       <% end %>
+          <tr>
+            <td class="text-center"><%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %></td>
+            <td><%= link_to user.name, user_path(user.id), class:"link-order-customer" %></td>
+            <td><%= user.age %> 歳</td>
+            <td><%= user.recipes.count %></td>
+            <td><%= user.passive_relationships.count %></td>
+            <td><%= user.total_favorites %></td>
+            <td><%= user.total_views %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-    <div class="">
-    <%= link_to('javascript:history.back()', class: "text-success") do %>
-      <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
-    <% end %>
+    <div>
+      <%= link_to('javascript:history.back()', class: "text-success") do %>
+        <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
+      <% end %>
     </div>
     <div class="d-flex justify-content-center m-3 custom-pagination">
       <%= paginate users %>
     </div>
   <% else %>
-    <h3> 該当するユーザーは見つかりませんでした。</h3>
+    <h2> --該当するユーザーは見つかりませんでした--</h2>
   <% end %>
 </div>

@@ -1,6 +1,6 @@
 class Public::RecipesController < ApplicationController
   
-  before_action :search_recipe, only: [:index, :show, :edit, :search]
+  before_action :search_recipe, only: [:index, :search]
   
   def new
     @recipe = Recipe.new
@@ -80,6 +80,8 @@ class Public::RecipesController < ApplicationController
     @alcohol = Alcohol.find_by(id: alcohol_id)
     @food = Food.find_by(id: food_id)
     @making_time = MakingTime.find_by(id: making_time_id)
+    # 空検索はさせない
+    @result = params[:q]&.values&.reject(&:blank?)
   end
   
   private

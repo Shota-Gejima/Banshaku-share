@@ -23,7 +23,7 @@ class User < ApplicationRecord
   
   validates :birthday, presence: { message: 'を選択してください' }
   validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
-  validates :introduction, allow_blank: true, length: { in: 1..50, message: 'は50文字以内で入力してください' }
+  validates :introduction, allow_blank: true, length: { maximum: 50, message: 'は50文字以内で入力してください' }
   # 20歳未満は登録させないカスタムバリデーション
   validate :age_should_be_over_20, if: -> { birthday.present? }
   
@@ -41,7 +41,6 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
-    
   
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -51,7 +50,7 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  # is_deletedがfalseならtrueを返す
+  # 退会機能(論理削除)is_deletedがfalseならtrueを返す
   def active_for_authentication?
     super && (is_deleted == false)
   end

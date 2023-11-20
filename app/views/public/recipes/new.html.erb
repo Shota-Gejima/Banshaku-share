@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="mt-5">
+  <div class="row mt-3">
     <%= render "public/shared/errors", obj: @recipe %>
-    </div>
+    <h2 class="bg-brown my-5">おつまみ新規投稿</h2>
+  </div>
   <div class="row justify-content-start">
     <div class="col-9">
-      <h2 class="bg-brown my-5 col-4">おつまみ投稿</h2>
       <%= render "form", recipe: @recipe %>
     </div>
   </div>

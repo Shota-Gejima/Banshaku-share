@@ -1,46 +1,31 @@
 <%= form_with model: recipe, local: true do |f| %>
   <table class="table table-borderless">
     <tr>
-      <td>
-        <%= f.label :recipe_image, "画像" %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :recipe_image, "画像" %><p class="form-word">  ※必須</p></td>
       <td><%= f.file_field :recipe_image, accept: "image/*" %></td>
     </tr>
     <tr>
-      <td><%= f.label :title, "おつまみ名" %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :title, "おつまみ名" %><p class="form-word">  ※必須</p></td>
       <td><%= f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "ここに入力してください", class: "form-control" %></td>
     </tr>
     <tr>
-      <td><%= f.label :description, "おつまみの説明" %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :description, "おつまみの説明" %><p class="form-word">  ※必須</p></td>
       <td><%= f.text_area :description, autofocus: true, autocomplete: "description", placeholder: "ここに入力してください", class: "form-control" %></td>
     </tr>
     <tr>
-      <td><%= f.label :process, "おつまみの作り方" %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :process, "おつまみの作り方" %><p class="form-word">  ※必須</p></td>
       <td><%= f.text_area :process, autofocus: true, autocomplete: "process", placeholder: "ここに入力してください", class: "form-control", rows: 10 %></td>
     </tr>
     <tr>
-      <td><%= f.label :alcohol_id, "合うお酒" %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :alcohol_id, "合うお酒" %><p class="form-word">  ※必須</p></td>
       <td><%= f.collection_select(:alcohol_id, Alcohol.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
     </tr>
     <tr>
-      <td><%= f.label :food_id, '食材' %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :food_id, '食材' %><p class="form-word">  ※必須</p></td>
       <td><%= f.collection_select(:food_id, Food.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
     </tr>
     <tr>
-      <td><%= f.label :making_time_id, '所要時間' %>
-        <p class="form-word">  ※必須</p>
-      </td>
+      <td><%= f.label :making_time_id, '所要時間' %><p class="form-word">  ※必須</p></td>
       <td><%= f.collection_select(:making_time_id, MakingTime.all, :id, :name, { prompt: '選択してください' }, class: "form-control") %></td>
     </tr>
     <tr>

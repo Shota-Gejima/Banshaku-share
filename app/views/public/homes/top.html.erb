@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 mt-5 mx-auto">
+    <div class="col-12 col-md-10 mt-5 mx-auto">
       <%= render 'slide' %>
     </div>
   </div>
-  <h3 class="mt-5">新着のおつまみ</h3>
-  <div class="row mt-2">
+  <div class="row mt-5">
+    <h2 class="bg-brown text-left">新着のおつまみ</h2>
+  </div>
+  <div class="row">
     <%= render "public/recipes/recipe-index", recipes: @recipes %>
   </div>
 </div>

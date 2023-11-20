@@ -1,6 +1,6 @@
   <nav class="navbar bg-dark text-white pt-2 pb-2 navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand ml-auto" href="/"><%= image_tag('logo.png', size: "180x70") %></a>
+      <a class="navbar-brand ml-auto" href="/"><%= image_tag('logo.png', size: "180x100") %></a>
       <% if user_signed_in? %>
         <p class="mx-2 text-light">ようこそ、<%= current_user.name %> 様</p>
       <% elsif admin_signed_in? %>
