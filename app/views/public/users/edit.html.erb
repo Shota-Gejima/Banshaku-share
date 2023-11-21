@@ -1,3 +1,6 @@
+<div class="mt-3">
+  <%= render "public/shared/errors", obj: @user %>
+</div>
 <div class="container">
   <div class="row">
     <h2 class="bg-brown mt-5 mx-auto">プロフィール編集</h2>
@@ -8,8 +11,8 @@
       <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
         <div class="mb-3">
           <div class="form-group mt-3">
-            <label for="inputName">ユーザー名</label>
-            <label class="form-word">※必須 1文字以上7文字以下</label> 
+            <label for="inputName">名前</label>
+            <label class="form-word">※必須 7文字以下</label> 
             <%= f.text_field :name, autofocus: true, id: "inputName", class: "form-control", placeholder: "1文字以上7文字以下" %>
           </div>
           <div class="form-group mt-3">

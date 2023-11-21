@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="bg-brown my-3 text-left">年齢確認</h2>
+    <h2 class="bg-brown mt-5 text-left">年齢確認</h2>
   </div>
   <div class="row">
     <div class="confirm-bg col-10-md-7 mx-auto">
@@ -15,11 +15,11 @@
         <%= link_to users_guest_sign_in_path, method: :post  do %>
           <button class="btn btn-primary" type="button" style="width:40%;">はい</button>
         <% end %>
-        <%= link_to root_path do %>
+        <%= link_to root_path(from_confirm_view: true) do %>
           <button class="btn btn-danger" type="button" style="width:40%">いいえ</button>
         <% end %>
       </div>
-      <h4 class="form-word mt-5 font-weight-bold">
+      <h4 class="form-word my-5 font-weight-bold">
         ゲストログイン中は、投稿、いいね、フォローなどのアクションが<br>
         一時的なものであり、ログアウト後にはデータは残りませんのでご注意ください。
       </h4>

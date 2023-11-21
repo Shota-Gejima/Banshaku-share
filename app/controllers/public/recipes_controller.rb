@@ -24,9 +24,8 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       flash[:notice] = "更新に成功しました"
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe.id)
     else
-      flash.now[:alert] = "未入力項目があり更新に失敗しました"
       render :edit
     end
   end

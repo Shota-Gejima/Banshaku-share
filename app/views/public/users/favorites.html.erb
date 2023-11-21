@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-3">
-    <h2 class="bg-brown mt-3 text-left"><%= @user.name %>さんのお気に入りのおつまみたち</h2>
+    <h2 class="bg-brown mt-3 text-left"><%= @user.name %>さんのお気に入りのおつまみたち (全<%= @recipes.total_count %>件)</h2>
   </div>
   <div class="row">
     <% if @recipes.present? %>
@@ -13,5 +13,11 @@
   </div>
   <div class="d-flex justify-content-center mt-3 custom-pagination">
     <%= paginate @recipes %>
+  </div>
+
+  <div class="mb-3 text-left">
+    <%= link_to('javascript:history.back()', class: "text-success") do %>
+      <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
+    <% end %>
   </div>
 </div>

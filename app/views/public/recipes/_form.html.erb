@@ -6,15 +6,15 @@
     </tr>
     <tr>
       <td><%= f.label :title, "おつまみ名" %><p class="form-word">  ※必須</p></td>
-      <td><%= f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "ここに入力してください", class: "form-control" %></td>
+      <td><%= f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "20文字以内", class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :description, "おつまみの説明" %><p class="form-word">  ※必須</p></td>
-      <td><%= f.text_area :description, autofocus: true, autocomplete: "description", placeholder: "ここに入力してください", class: "form-control" %></td>
+      <td><%= f.text_area :description, autofocus: true, autocomplete: "description", placeholder: "50文字以内", class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :process, "おつまみの作り方" %><p class="form-word">  ※必須</p></td>
-      <td><%= f.text_area :process, autofocus: true, autocomplete: "process", placeholder: "ここに入力してください", class: "form-control", rows: 10 %></td>
+      <td><%= f.text_area :process, autofocus: true, autocomplete: "process", placeholder: "255文字以内", class: "form-control", rows: 10 %></td>
     </tr>
     <tr>
       <td><%= f.label :alcohol_id, "合うお酒" %><p class="form-word">  ※必須</p></td>

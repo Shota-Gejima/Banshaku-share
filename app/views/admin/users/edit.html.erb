@@ -1,8 +1,12 @@
+<div class="mt-3">
+  <%= render "public/shared/errors", obj: @user %>
+</div>
 <div class="container">
-  <div class="row justify-content-start">
-    
+  <div class="row my-3">
+    <h2 class="bg-brown my-5">会員編集</h2>
+  </div>
+  <div class="row justify-content-start my-3">
     <div class="col-9 mx-auto">
-      <h2 class="bg-brown my-5 col-4 text-left">会員編集</h2>
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
         <table class="table table-borderless">
           <tr>
@@ -23,8 +27,8 @@
           <tr>
             <td style="width: 40%">会員ステータス</td>
             <td>
-              <%= f.radio_button :is_deleted, false %><%= f.label :有効 %>
-              <%= f.radio_button :is_deleted, true %><%= f.label :退会 %>
+              <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted_false %>
+              <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted_true %>
             </td>
           </tr>
           <tr>
@@ -35,6 +39,9 @@
             </td>
           </tr>
         </table>
+      <% end %>
+      <%= link_to('javascript:history.back()', class: "text-success") do %>
+        <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
       <% end %>
     </div>
   </div>

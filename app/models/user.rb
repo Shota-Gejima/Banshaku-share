@@ -21,8 +21,8 @@ class User < ApplicationRecord
   # favoriteモデルを介していいねされたおつまみを取り出す
   # has_many :favorited_recipes, through: :favorites, source: :recipe
   
+  validates :name, presence: { message: 'を入力してください' }, length: { maximum: 7, message: 'は7文字以内で入力してください' }
   validates :birthday, presence: { message: 'を選択してください' }
-  validates :name, presence: { message: 'を入力してください' }, length: { in: 1..7 }
   validates :introduction, allow_blank: true, length: { maximum: 50, message: 'は50文字以内で入力してください' }
   # 20歳未満は登録させないカスタムバリデーション
   validate :age_should_be_over_20, if: -> { birthday.present? }

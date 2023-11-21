@@ -3,4 +3,9 @@
     <h2 class="bg-brown mt-3 text-left">フォロー一覧</h2>
     <%= render "users-index", users: @follows %>
   </div>
+  <div class="mb-3">
+    <%= link_to('javascript:history.back()', class: "text-success") do %>
+      <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
+    <% end %>
+  </div>
 </div>

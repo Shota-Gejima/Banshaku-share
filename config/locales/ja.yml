@@ -4,6 +4,9 @@ ja:
       user:
         birthday: 生年月日
         name: 名前
+        is_deleted_true: 退会
+        is_deleted_false: 有効
+        introduction: 自己紹介
       recipe:
         recipe_image: 画像
         title: おつまみ名
@@ -12,11 +15,6 @@ ja:
         alcohol_id: 合うお酒
         food_id: 食材
         making_time_id: 所要時間
-
-  activemodel:   # Formオブジェクトを用いた場合
-     attributes:
-       order_object:
-         post_code: 郵便番号
   views:
     pagination:
       first: "&laquo; 最初"

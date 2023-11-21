@@ -29,7 +29,7 @@
         <div class="mt-5 text-center">
           <p class="form-word">それでもログアウトしますか？</p>
           <%= link_to "ログアウトする", users_guest_sign_out_path, method: :delete, class: "btn btn-danger", "data-confirm" => "本当にログアウトにしますか？" %>
-          <%= link_to "ログアウトしない", user_path(@user), class: "btn btn-secondary ml-2" %>
+          <%= link_to "ログアウトしない", user_path(@user, from_confirm_view: true), class: "btn btn-secondary ml-2" %>
         </div>
       </div>
     </div>
