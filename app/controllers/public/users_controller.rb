@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_log_in_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit, :update]
+  before_action :search_user, only: [:index, :search]
   
   def show
     @user = User.find(params[:id])
@@ -56,12 +57,17 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     # @recipes = Recipe.where(user: user)
     @follows = user.followings.page(params[:page]).per(8)
-    
   end
   
   def followers
     user = User.find(params[:id])
     @followers = user.followers.page(params[:page]).per(8)
+  end
+  
+  def search
+    @users = @q.result.page(params[:page])
+    # 空検索はさせない
+    @result = params[:q]&.values&.reject(&:blank?)
   end
   
   private
@@ -86,6 +92,11 @@ class Public::UsersController < ApplicationController
     if @user.guest_user?
       redirect_to user_path(current_user), alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
+  end
+  
+   # 検索機能
+  def search_user
+    @q = User.ransack(params[:q])
   end
   
 end

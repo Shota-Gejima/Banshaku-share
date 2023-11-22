@@ -1,0 +1,14 @@
+<%= search_form_for @q, url: user_search_path do |f| %>
+  <div class="genre-search-table-container">
+    <table class="table table-borderless">
+      <tr>
+        <th class="genre_search_head"><i class="fa-solid fa-magnifying-glass"></i>晩酌愛好家の検索</th>
+        <td><%= f.search_field :name_cont, class: 'form-control', placeholder: '例) 太郎' %></td>
+        <td><%= f.button class: 'btn btn-primary' do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

@@ -79,6 +79,10 @@ class User < ApplicationRecord
     age
   end
   
+  def self.ransackable_attributes(auth_object = nil)
+    [ "name" ]
+  end
+  
   # 総閲覧数
   def total_views
     recipes.joins(:read_counts).count

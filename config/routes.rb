@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+    get '/users/search', to: 'users#search', as: 'user_search'
+    get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
+    patch 'users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
     resources :users, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       member do
@@ -35,8 +38,6 @@ Rails.application.routes.draw do
         get :followers
       end
     end
-    get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
-    patch 'users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
   end
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -59,7 +59,8 @@ class Recipe < ApplicationRecord
     user.read_counuts.count
   end
   
-  def self.ransackable_attributes(auth_object = nil) #どの属性を検索可能にするかを明示的に制御している
+  #どの属性を検索可能にするかを明示的に制御している
+  def self.ransackable_attributes(auth_object = nil)
     ["alcohol_id", "description", "food_id", "id", "making_time_id", "process", "title", "user_id"]
   end
   
