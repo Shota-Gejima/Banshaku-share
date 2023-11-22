@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # has_many :favorited_recipes, through: :favorites, source: :recipe
   
   validates :name, presence: { message: 'を入力してください' }, length: { maximum: 7, message: 'は7文字以内で入力してください' }
-  validates :birthday, format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }, presence: { message: 'を選択してください' }
+  validates :birthday, presence: { message: 'を選択してください' }
   validates :introduction, allow_blank: true, length: { maximum: 50, message: 'は50文字以内で入力してください' }
   # 20歳未満は登録させないカスタムバリデーション
   validate :age_should_be_over_20, if: -> { birthday.present? }

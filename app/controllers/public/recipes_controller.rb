@@ -1,5 +1,4 @@
 class Public::RecipesController < ApplicationController
-  
   before_action :search_recipe, only: [:index, :search]
   
   def new
