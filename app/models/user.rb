@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
   
   # favoriteモデルを介していいねされたおつまみを取り出す
-  # has_many :favorited_recipes, through: :favorites, source: :recipe
+  has_many :favorited_recipes, through: :favorites, source: :recipe
   
   validates :name, presence: { message: 'を入力してください' }, length: { maximum: 7, message: 'は7文字以内で入力してください' }
   validates :birthday, presence: { message: 'を選択してください' }
@@ -28,8 +28,9 @@ class User < ApplicationRecord
   validate :age_should_be_over_20, if: -> { birthday.present? }
   
   # いいねされたおつまみの多い順
-  # scope :most_favorited_recipes, -> {includes(:favorited_recipes)
-    # .sort_by {|x| x.favorited_recipes.includes(:favorites).size }. reverse }
+  scope :most_favorited_recipes, -> {includes(:favorited_recipes)
+    .sort_by {|x| x.favorited_recipes.includes(:favorites).size }. reverse }
+  
     
   # 20歳未満は登録させないカスタムメソッド
   def age_should_be_over_20

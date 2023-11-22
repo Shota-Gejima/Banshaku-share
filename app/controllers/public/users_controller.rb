@@ -16,13 +16,13 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    # if params[:most_favorited_recipes]
-      # users = User.most_favorited_recipes
-      # @users = Kaminari.paginate_array(users).page(params[:page])
-      # @sort_title = "いいねされたおつまみ数が多い順"
-    # else
+    if params[:most_favorited_recipes]
+      users = User.most_favorited_recipes
+      @users = Kaminari.paginate_array(users).page(params[:page])
+      @sort_title = "いいねされたおつまみ数が多い順"
+    else
     @users = User.includes(:recipes).page(params[:page]).per(8)
-  # end
+  end
   end
 
   def update
