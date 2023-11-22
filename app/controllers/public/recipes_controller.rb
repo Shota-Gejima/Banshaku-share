@@ -2,7 +2,12 @@ class Public::RecipesController < ApplicationController
   before_action :search_recipe, only: [:index, :search]
   
   def new
-    @recipe = Recipe.new
+    unless current_admin
+      @recipe = Recipe.new
+    else
+      flash[:alert] = "管理者はおつまみを投稿できません"
+      redirect_to admin_users_path
+    end
   end
   
   def create

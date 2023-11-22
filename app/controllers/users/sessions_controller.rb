@@ -21,6 +21,7 @@ class Users::SessionsController < Devise::SessionsController
   user.comments.destroy_all
   user.favorites.destroy_all
   user.followings.destroy_all
+  user.read_counts.destroy_all
   end
   
 end

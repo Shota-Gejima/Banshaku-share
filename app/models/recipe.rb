@@ -10,15 +10,6 @@ class Recipe < ApplicationRecord
   # read_countモデルを介して閲覧したしたユーザーを取り出す
   has_many :viewed_users, through: :read_counts, source: :user
  
-  
-  # validates :recipe_image, presence: true
-  # validates :title, presence: true, length: { minimum: 1, maximum: 20, message: 'は20文字以内で入力してください' }
-  # validates :description, presence: true, length: { minimum: 1, maximum: 255, message: 'は255文字以内で入力してください' }
-  # validates :process, presence: true, length: { minimum: 1, maximum: 255, message: 'は255文字以内で入力してください' }
-  # validates :alcohol_id, presence: true
-  # validates :food_id, presence: true
-  # validates :making_time_id, presence: true
-  
   validates :recipe_image, presence: { message: 'を入力してください' }
   validates :title, presence: { message: 'を入力してください' }, length: { maximum: 20, message: 'は20文字以内で入力してください' }
   validates :description, presence: { message: 'を入力してください' }, length: { maximum: 50, message: 'は50文字以内で入力してください' }
@@ -26,9 +17,6 @@ class Recipe < ApplicationRecord
   validates :alcohol_id, presence: { message: 'を選択してください' }
   validates :food_id, presence: { message: 'を選択してください' }
   validates :making_time_id, presence: { message: 'を選択してください' }
-
-  
-  
 
   # 並び替え機能
   scope :latest, -> {order(created_at: :desc)}
