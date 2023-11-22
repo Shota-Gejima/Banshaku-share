@@ -55,4 +55,21 @@ class Recipe < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
   ["alcohol", "food", "making_time", "user"]
   end
+  
+  def self.sort_by(params)
+    if params[:latest]
+      latest.page(params[:page])
+    elsif params[:old]
+     old.page(params[:page])
+    elsif params[:most_favorited]
+      recipes = most_favorited
+      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+    elsif params[:most_viewed]
+      recipes = most_viewed
+      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
+    else
+      includes(:user).order("created_at DESC").page(params[:page])
+    end
+  end
+  
 end

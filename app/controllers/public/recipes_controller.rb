@@ -35,24 +35,8 @@ class Public::RecipesController < ApplicationController
   end
   
   def index
-    if params[:latest]
-      @recipes = Recipe.latest.page(params[:page])
-      @sort_order = "新着順"
-    elsif params[:old]
-      @recipes = Recipe.old.page(params[:page])
-      @sort_order = "古い順"
-    elsif params[:most_favorited]
-      recipes = Recipe.most_favorited
-      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
-      @sort_order = "いいねが多い順"
-    elsif params[:most_viewed]
-      recipes = Recipe.most_viewed
-      @recipes = Kaminari.paginate_array(recipes).page(params[:page])
-      @sort_order = "閲覧数が多い順"
-    else
-      @recipes = Recipe.includes(:user).order("created_at DESC").page(params[:page])
-      @sort_order = "新着順"
-    end
+   @recipes = Recipe.sort_by(params)
+   @sort_by = sort_by(params)
   end
   
   def show
@@ -96,6 +80,21 @@ class Public::RecipesController < ApplicationController
   # 検索機能
   def search_recipe
     @q = Recipe.ransack(params[:q])
+  end
+  
+  def sort_by(params)
+ 
+     if params[:latest]
+       "新着順"
+    elsif params[:old]
+      "古い順"
+    elsif params[:most_favorited]
+      "いいねが多い順"
+    elsif params[:most_viewed]
+     "閲覧数が多い順"
+    else
+     "新着順"
+    end
   end
   
 end

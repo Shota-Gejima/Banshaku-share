@@ -28,10 +28,11 @@ class User < ApplicationRecord
   validate :age_should_be_over_20, if: -> { birthday.present? }
   
   # いいねされたおつまみの多い順
-  scope :most_favorited_recipes, -> {includes(:favorited_recipes)
-    .sort_by {|x| x.favorited_recipes.includes(:favorites).size }. reverse }
-  
-    
+  scope :most_favorited_recipes, -> {joins(recipes: :favorites)
+    .select('users.*, COUNT(favorites.id) AS favorites_count')
+    .group('users.id')
+    .order('favorites_count DESC')}
+
   # 20歳未満は登録させないカスタムメソッド
   def age_should_be_over_20
     if age < 20

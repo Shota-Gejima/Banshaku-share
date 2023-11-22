@@ -21,8 +21,8 @@ class Public::UsersController < ApplicationController
       @users = Kaminari.paginate_array(users).page(params[:page])
       @sort_title = "いいねされたおつまみ数が多い順"
     else
-    @users = User.includes(:recipes).page(params[:page]).per(8)
-  end
+      @users = User.includes(:recipes).page(params[:page]).per(8)
+    end
   end
 
   def update
@@ -49,8 +49,8 @@ class Public::UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user: @user.id).pluck(:recipe_id)
-    @recipes = Recipe.where(id: favorites).page(params[:page])
+    favorites = 
+    @recipes = @user.favorited_recipes.page(params[:page])
   end
   
   def follows
