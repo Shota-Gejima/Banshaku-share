@@ -13,19 +13,24 @@
             <div class="col-10">
               <p class="card-title">
                 <%= link_to(recipe_path(recipe.id), class: "text-dark") do %>
-                  <strong><i class="far fa-flag"></i><span> <%= recipe.title %></span></strong>
+                  <strong>
+                    <i class="far fa-flag"></i>
+                    <span> <%= recipe.title %></span>
+                  </strong>
                 <% end %>
               </p>
               <p class="card-text">合うお酒：<%= recipe.alcohol.name %></p>
               <p class="card-text">食材    ：<%= recipe.food.name %></p>
               <p class="card-text">所要時間：<%= recipe.making_time.name %></p>
-              <span><i class="fas fa-user"></i> By <%= link_to recipe.user.name, user_path(recipe.user_id), class: "text-dark" %></span><br>
+              <span>
+                <i class="fas fa-user"></i> By <%= link_to recipe.user.name, user_path(recipe.user_id), class: "text-dark" %>
+              </span>
               <!--管理者または投稿者またはtopページではいいねさせない-->
               <% if admin_signed_in? || current_page?(root_path) %>
                 <p class="card-text">
                   <span><i class="fa-regular fa-heart"></i><%="#{recipe.favorites.count}" %></span>
                   <span class="comment ml-4"><i class="fa-regular fa-comments mr-2"></i><%= "#{recipe.comments.count}" %></span>
-                  <span class="read-count ml-4"><strong><i class="fa-solid fa-eye"></i><%= recipe.read_counts.count %></strong></span>
+                  <span class="read-count ml-4"><strong>👀 <%= recipe.read_counts.count %></strong></span>
                 </p>
               <% else %>
                 <!--非同期通信化-->
@@ -35,9 +40,7 @@
                   </span>
                   <span class="comment ml-4">
                     <i class="fa-regular fa-comments mr-2"></i><%= "#{recipe.comments.count}" %>
-                  <span class="read-count ml-4">
-                    <strong><i class="fa-solid fa-eye"></i><%= recipe.read_counts.count %></strong>
-                  </span>
+                  <span class="read-count ml-4">👀 <%= recipe.read_counts.count %></span>
                 </p>
               <% end %>
             </div>

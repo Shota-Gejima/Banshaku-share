@@ -34,12 +34,12 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <% unless current_user.guest_user? %>
-                <%= link_to(destroy_user_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+              <% if current_user.guest_user? %>
+                <%= link_to(user_confirm_path(current_user.id), class: "btn btn-outline-light text-light nav-link ml-2") do %>
                   <strong><i class="fa-solid fa-sign-out-alt mr-1"></i><span>ログアウト</span></strong>
                 <% end %>
               <% else %>
-                <%= link_to(user_confirm_path(current_user.id), class: "btn btn-outline-light text-light nav-link ml-2") do %>
+                <%= link_to(destroy_user_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2") do %>
                   <strong><i class="fa-solid fa-sign-out-alt mr-1"></i><span>ログアウト</span></strong>
                 <% end %>
               <% end %>
