@@ -83,8 +83,7 @@ class Public::RecipesController < ApplicationController
   end
   
   def sort_by(params)
- 
-     if params[:latest]
+    if params[:latest]
        "新着順"
     elsif params[:old]
       "古い順"

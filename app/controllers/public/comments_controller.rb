@@ -16,7 +16,6 @@ class Public::CommentsController < ApplicationController
     if admin_signed_in?
       redirect_to request.referer
     end
-    # redirect_to recipe_path(params[:recipe_id])
   end
   
   private

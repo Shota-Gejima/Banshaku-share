@@ -16,12 +16,26 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    if params[:most_favorited_recipes]
+    if params[:latest]
+      @users = User.latest.page(params[:page])
+      @sort_title = "新着順"
+    elsif params[:most_recipes]
+      @users = User.most_recipes.page(params[:page])
+      @sort_title = "投稿数が多い順"
+    elsif params[:most_favorited_recipes]
       users = User.most_favorited_recipes
       @users = Kaminari.paginate_array(users).page(params[:page])
-      @sort_title = "いいねされたおつまみ数が多い順"
+      @sort_title = "いいね獲得総数が多い順"
+    elsif params[:most_followers]
+      users = User.most_followers
+      @users = Kaminari.paginate_array(users).page(params[:page])
+      @sort_title = "フォロワー数が多い順"
+    elsif params[:most_viewed]
+      @users = User.most_viewed.page(params[:page])
+      @sort_title = "総閲覧数が多い順"
     else
       @users = User.includes(:recipes).page(params[:page]).per(8)
+      @sort_title = "古い順"
     end
   end
 
@@ -49,7 +63,6 @@ class Public::UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:id])
-    favorites = 
     @recipes = @user.favorited_recipes.page(params[:page])
   end
   
