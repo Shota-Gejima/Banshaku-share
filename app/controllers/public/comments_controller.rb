@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.recipe_id = @recipe.id
     unless comment.save
-      flash[:alert] = "1文字以上50文字以内で入力してください"
+      flash[:alert] = "コメントは1文字以上50文字以内で入力してください"
       redirect_to request.referer
     end
   end
