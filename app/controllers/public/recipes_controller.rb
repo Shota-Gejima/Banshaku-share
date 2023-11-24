@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :search_recipe, only: [:index, :search]
+  before_action :is_matching_log_in_user, only: [:edit, :update]
   
   def new
     unless current_admin
@@ -93,6 +94,16 @@ class Public::RecipesController < ApplicationController
      "閲覧数が多い順"
     else
      "新着順"
+    end
+  end
+  
+  def is_matching_log_in_user
+    user = User.find(params[:id])
+    unless current_admin
+      if user.id != current_user.id
+        flash[:alert] = "他ユーザーが投稿したおつまみの編集画面には遷移できません"
+        redirect_to recipes_path
+      end
     end
   end
   
