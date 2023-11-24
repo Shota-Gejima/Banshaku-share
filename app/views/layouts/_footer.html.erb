@@ -1,19 +1,16 @@
 <footer class="bg-dark text-white pt-3 pb-3">
   <div class="container">
     <div class="row no-gutters">
-      <div class="col-md-4 text-left">
-        <p>晩酌がより楽しく、毎日が特別なひとときに。</p>
-        <!--<= image_tag('logo-white.png') %>-->
+      <div class="col-md-4">
+        <p style="text-decoration: underline;">
+          晩酌がもっと楽しく、毎日が特別なひとときに。
+        </p>
       </div>
       <div class="col-md-8 text-right">
         <h6 class="text-white mt-2 mb-3">Link</h6>
         <ul class="p-0 list-unstyled">
-          <li>
-            <a href="" title="About" class="text-white-50">会社概要</a>
-          </li>
-          <li>
-            <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
-          </li>
+          <li><%= link_to "About", about_path, class: "text-white-50" %></li>
+          <li><%= link_to "Top", root_path, class: "text-white-50" %></li>
         </ul>
       </div>
     </div>

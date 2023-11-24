@@ -3,8 +3,8 @@
     <h2 class="bg-brown mt-3">おつまみ詳細画面</h2>
   </div>
   <div class="row my-3">
-    <div class="col-6 mt-6">
-      <div><%= image_tag @recipe.get_recipe_image(400, 400) %></div>
+    <div class="col-md-6 mt-6">
+      <div><%= image_tag @recipe.get_recipe_image(360, 360) %></div>
       <p class="mt-3">おつまみ名: <%= @recipe.title %></p>
       <p>説明: <%= @recipe.description %></p>
       <p>合うお酒: <%= @recipe.alcohol.name %></p>
@@ -26,7 +26,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-6 mt-3">
+    <div class="col-md-6 mt-3">
       <div id="comment-counter">
         <%= render "public/comments/counter", recipe: @recipe %>
       </div>
@@ -40,7 +40,7 @@
   </div>
   <% unless admin_signed_in? %>
     <div class="row my-3">
-      <div class="col-6">
+      <div class="col-md-6">
         <h4>コメントを追加</h4>
         <%= render "public/comments/form", recipe: @recipe, comment: @comment %>
       </div>

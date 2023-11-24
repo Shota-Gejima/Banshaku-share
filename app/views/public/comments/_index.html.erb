@@ -5,7 +5,7 @@
         <div class="media mb-3">
           <%= image_tag comment.user.get_profile_image(100, 100), class: "my-3 rounded-circle" %>
           <div class="media-body">
-            <h5 class="mt-2"><%= comment.user.name %></h5>
+            <h5 class="mt-2"><%= link_to comment.user.name, user_path(comment.user_id) %></h5>
             <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
             <p><%= comment.comment %></p>
             <!--管理者かコメント投稿者しか消せないようにする-->
