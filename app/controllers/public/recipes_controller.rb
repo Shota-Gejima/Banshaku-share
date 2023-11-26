@@ -62,14 +62,15 @@ class Public::RecipesController < ApplicationController
   
   def search
     @recipes = @q.result.page(params[:page])
-    alcohol_id = params[:q][:alcohol_id_eq]
-    food_id = params[:q][:food_id_eq]
-    making_time_id = params[:q][:making_time_id_eq]
-    @alcohol = Alcohol.find_by(id: alcohol_id)
-    @food = Food.find_by(id: food_id)
-    @making_time = MakingTime.find_by(id: making_time_id)
+    search_params = params[:q]
+    alcohol_id = search_params[:alcohol_id_eq]
+    food_id = search_params[:food_id_eq]
+    making_time_id = search_params[:making_time_id_eq]
+    @alcohol = find_model(Alcohol, alcohol_id)
+    @food = find_model(Food, food_id)
+    @making_time = find_model(MakingTime, making_time_id)
     # 空検索はさせない
-    @result = params[:q]&.values&.reject(&:blank?)
+    @result = search_params&.values&.reject(&:blank?)
   end
   
   private
@@ -78,9 +79,8 @@ class Public::RecipesController < ApplicationController
     params.require(:recipe).permit(:recipe_image, :alcohol_id, :food_id, :making_time_id, :title, :description, :process)
   end
   
-  # 検索機能
-  def search_recipe
-    @q = Recipe.ransack(params[:q])
+  def find_model(model_class, id)
+    model_class.find_by(id: id)
   end
   
   def sort_by(params)
@@ -105,6 +105,11 @@ class Public::RecipesController < ApplicationController
         redirect_to recipes_path
       end
     end
+  end
+  
+   # 検索機能
+  def search_recipe
+    @q = Recipe.ransack(params[:q])
   end
   
 end

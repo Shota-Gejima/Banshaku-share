@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
   has_one_attached :profile_image
+  
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -32,12 +32,12 @@ class User < ApplicationRecord
   # 新着順
   scope :latest, -> {order(created_at: :desc)}
   # 投稿数が多い順
-  scope :most_recipes, -> {joins(:recipes)
+  scope :most_recipes, -> {left_joins(:recipes)
     .select('users.*, COUNT(recipes.id) AS recipes_count')
     .group('users.id')
     .order('recipes_count DESC')}
   # 総いいね数が多い順
-  scope :most_favorited_recipes, -> {joins(recipes: :favorites)
+  scope :most_favorited_recipes, -> {left_joins(recipes: :favorites)
     .select('users.*, COUNT(favorites.id) AS favorites_count')
     .group('users.id')
     .order('favorites_count DESC')}
@@ -45,12 +45,10 @@ class User < ApplicationRecord
   scope :most_followers, -> {includes(:followers)
     .sort_by {|x| x.followers.includes(:followings).size }. reverse }
   # 閲覧数が多い順
-  scope :most_viewed, -> { left_joins(recipes: :read_counts)
+  scope :most_viewed, -> {left_joins(recipes: :read_counts)
     .select('users.*, COUNT(read_counts.id) AS read_counts_count')
     .group('users.id')
-    .order('read_counts_count DESC')
-}
-  
+    .order('read_counts_count DESC')}
     
   # 20歳未満は登録させないカスタムメソッド
   def age_should_be_over_20
@@ -112,6 +110,27 @@ class User < ApplicationRecord
   # 総いいね数
   def total_favorites
     recipes.joins(:favorites).count
+  end
+  
+  def self.sort_by(params)
+    if params[:old]
+      old.page(params[:page])
+    elsif params[:latest]
+      latest.page(params[:page])
+    elsif params[:most_recipes]
+      most_recipes.page(params[:page])
+    elsif params[:most_favorited_recipes]
+      users = most_favorited_recipes
+      @users = Kaminari.paginate_array(users).page(params[:page])
+    elsif params[:most_followers]
+      users = most_followers
+      @users = Kaminari.paginate_array(users).page(params[:page])
+    elsif params[:most_viewed]
+      users = most_viewed
+      @users = Kaminari.paginate_array(users).page(params[:page])
+    else
+      old.page(params[:page])
+    end
   end
   
 end

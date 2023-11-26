@@ -20,4 +20,5 @@ class ApplicationController < ActionController::Base
   def admin_check
     admin_signed_in?
   end
+  
 end

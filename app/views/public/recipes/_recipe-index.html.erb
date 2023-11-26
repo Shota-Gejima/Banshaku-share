@@ -30,7 +30,7 @@
                 <p class="card-text">
                   <span><i class="fa-regular fa-heart"></i><%="#{recipe.favorites.count}" %></span>
                   <span class="comment ml-4"><i class="fa-regular fa-comments mr-2"></i><%= "#{recipe.comments.count}" %></span>
-                  <span class="read-count ml-4"><strong>👀 <%= recipe.read_counts.count %></strong></span>
+                  <span class="read-count ml-4">👀 <%= recipe.read_counts.count %></span>
                 </p>
               <% else %>
                 <!--非同期通信化-->
@@ -56,4 +56,3 @@
     </div>
   </div>
 <% end %>
-

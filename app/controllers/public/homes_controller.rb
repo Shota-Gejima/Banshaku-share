@@ -7,9 +7,12 @@ class Public::HomesController < ApplicationController
     end
   end
   
+  # 画面表示だけの為未記入
   def about
   end
   
+  # 画面表示だけの為未記入
   def confirm
   end
+  
 end

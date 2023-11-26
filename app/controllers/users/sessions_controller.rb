@@ -9,7 +9,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_out
     user = User.guest
     delete_guest_user_data(user)
-    sign_out(user)
+    sign_out user
     redirect_to root_path, notice: "ゲストユーザーでログアウトしました"
   end
   

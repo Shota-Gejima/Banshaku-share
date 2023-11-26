@@ -17,25 +17,26 @@
         </thead>
         <tbody>
           <% @users.each do |user| %>
-          <tr>
-            <td><%= user.id %></td>
-            <td><%= link_to user.name, admin_user_path(user.id), class:"link-order-customer" %></td>
-            <td><%= user.email %></td>
-            <td><%= user.recipes.count %></td>
-            <td><%= user.comments.count %></td>
-            <td>
-             <% if user.is_deleted == false %>
-              <p class="text-success">有効</p>
-             <% else %>
-              <p class="text-secondary">退会</p>
-             <% end %>
-           </td>
-          </tr>
-         <% end %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= link_to user.name, admin_user_path(user.id), class:"link-order-customer" %></td>
+              <td><%= user.email %></td>
+              <td><%= user.recipes.count %></td>
+              <td><%= user.comments.count %></td>
+              <td>
+                <% if user.is_deleted == false %>
+                  <p class="text-success">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
       <div class="d-flex justify-content-center mt-3 custom-pagination">
         <%= paginate @users %>
       </div>
+    </div>
   </div>
 </div>

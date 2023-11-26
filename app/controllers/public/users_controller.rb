@@ -16,27 +16,29 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    if params[:latest]
-      @users = User.latest.page(params[:page])
-      @sort_title = "新着順"
-    elsif params[:most_recipes]
-      @users = User.most_recipes.page(params[:page])
-      @sort_title = "投稿数が多い順"
-    elsif params[:most_favorited_recipes]
-      users = User.most_favorited_recipes
-      @users = Kaminari.paginate_array(users).page(params[:page])
-      @sort_title = "いいね獲得総数が多い順"
-    elsif params[:most_followers]
-      users = User.most_followers
-      @users = Kaminari.paginate_array(users).page(params[:page])
-      @sort_title = "フォロワー数が多い順"
-    elsif params[:most_viewed]
-      @users = User.most_viewed.page(params[:page])
-      @sort_title = "総閲覧数が多い順"
-    else
-      @users = User.includes(:recipes).page(params[:page]).per(8)
-      @sort_title = "古い順"
-    end
+    @users = User.sort_by(params)
+    @sort_by = sort_by(params)
+    # if params[:latest]
+      # @users = User.latest.page(params[:page])
+      # @sort_title = "新着順"
+    # elsif params[:most_recipes]
+      # @users = User.most_recipes.page(params[:page])
+      # @sort_title = "投稿数が多い順"
+    # elsif params[:most_favorited_recipes]
+      # users = User.most_favorited_recipes
+      # @users = Kaminari.paginate_array(users).page(params[:page])
+      # @sort_title = "いいね獲得総数が多い順"
+    # elsif params[:most_followers]
+      # users = User.most_followers
+      # @users = Kaminari.paginate_array(users).page(params[:page])
+      # @sort_title = "フォロワー数が多い順"
+    # elsif params[:most_viewed]
+      # @users = User.most_viewed.page(params[:page])
+      # @sort_title = "総閲覧数が多い順"
+    # else
+      # @users = User.includes(:recipes).page(params[:page]).per(8)
+      # @sort_title = "古い順"
+    # end
   end
 
   def update
@@ -104,6 +106,24 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.guest_user?
       redirect_to user_path(current_user), alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+  
+  def sort_by(params)
+    if params[:old]
+      "古い順"
+    elsif params[:latest]
+      "新着順"
+    elsif params[:most_recipes]
+      "投稿数が多い順"
+    elsif params[:most_favorited_recipes]
+      "いいね獲得総数が多い順"
+    elsif params[:most_followers]
+      "フォロワー数が多い順"
+    elsif params[:most_viewed]
+      "総閲覧数が多い順"
+    else 
+      "古い順"
     end
   end
   

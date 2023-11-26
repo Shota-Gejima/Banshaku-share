@@ -11,4 +11,5 @@ class Public::FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(recipe_id: @recipe.id)
     favorite.destroy
   end
+  
 end
