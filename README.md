@@ -1,5 +1,5 @@
 # Banshaku-share
-<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/c2e2b32a-c79f-4763-8d1f-c373b2274079" width= "100">
+<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/c2e2b32a-c79f-4763-8d1f-c373b2274079" width= "500"></br>
 ## サイト概要
 ### サイトテーマ
 晩酌を楽しむ仲間とお気に入りのおつまみを共有できるコミュニティサイト
