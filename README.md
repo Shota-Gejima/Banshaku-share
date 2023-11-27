@@ -24,9 +24,7 @@
 ​
 ## 設計書
 ### ER図
-<img src="(https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/3534260f-2187-4ca2-9165-e08fcccfa972)" width= "500"></br>
-![1af913de449f72f972a238762f1025de]()
-
+<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/e4d84da8-0e05-4983-9779-8e635e5726f3" width= "500"></br>
 ### テーブル定義書
 https://docs.google.com/spreadsheets/d/1NmU6uRml6Ij-ZepDzKGj3OYByJRacvRR/edit?usp=sharing&ouid=100025152045489483757&rtpof=true&sd=true
 ### アプリケーション詳細設計
