@@ -49,7 +49,6 @@ class Public::UsersController < ApplicationController
   
   def follows
     user = User.find(params[:id])
-    # @recipes = Recipe.where(user: user)
     @follows = user.followings.page(params[:page]).per(8)
   end
   

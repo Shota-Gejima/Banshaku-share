@@ -66,7 +66,7 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image_user.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'no_image_user.jpg', content_type: 'image/jpg')
     end
-    profile_image.variant(resize_to_fill: [width, height]).processed
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
   # 退会機能(論理削除)is_deletedがfalseならtrueを返す
