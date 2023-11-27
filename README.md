@@ -1,5 +1,5 @@
 # Banshaku-share
-![9cb3f1c99ad1acfde7384166d42e7cbc](https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/c2e2b32a-c79f-4763-8d1f-c373b2274079)
+<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/c2e2b32a-c79f-4763-8d1f-c373b2274079" width= "100">
 ## サイト概要
 ### サイトテーマ
 晩酌を楽しむ仲間とお気に入りのおつまみを共有できるコミュニティサイト
@@ -33,3 +33,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
+
