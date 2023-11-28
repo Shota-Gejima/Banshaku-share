@@ -11,7 +11,7 @@
 に飽きたと感じている人も多いでしょう。そんな人たちに新しいおつまみのアイデアを提</br>
 供し、家飲みをより楽しんでいただきたいという思いから、このサイトを制作することに</br>
 決めました。
-​
+
 ### ターゲットユーザ
 * 晩酌を楽しむが、いつも同じおつまみに飽きてしまっている人
 * 新しいおつまみのアイデアやレシピを求めている人
@@ -29,6 +29,8 @@
 https://docs.google.com/spreadsheets/d/1NmU6uRml6Ij-ZepDzKGj3OYByJRacvRR/edit?usp=sharing&ouid=100025152045489483757&rtpof=true&sd=true
 ### アプリケーション詳細設計
 https://docs.google.com/spreadsheets/d/1T9ZUYaTQ0au_gVHSZ9fnhmQvL---QN60AQuvy0E3xKY/edit?usp=sharing
+### ワイヤーフレーム
+<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/09d093f4-8899-44ca-af06-f6efdb2749d5" width= "500"></br>
 ## 開発環境
 - OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
