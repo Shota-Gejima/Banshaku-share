@@ -98,9 +98,9 @@ class Public::RecipesController < ApplicationController
   end
   
   def is_matching_log_in_user
-    user = User.find(params[:id])
+    recipe = Recipe.find(params[:id])
     unless current_admin
-      if user.id != current_user.id
+      if recipe.user.id != current_user.id
         flash[:alert] = "他ユーザーが投稿したおつまみの編集画面には遷移できません"
         redirect_to recipes_path
       end

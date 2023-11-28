@@ -42,7 +42,6 @@
       <table class= "table">
         <thead>
           <tr class="bg-table">
-            <th style="width: 15%">名前</th>
             <th style="width: 15%">コメントした日</th>
             <th style="width: 15%">おつまみ名</th>
             <th style="width: 40%">コメント</th>
@@ -53,7 +52,6 @@
           <tbody>
             <% @comments.each do |comment|  %>
               <tr>
-                <td><%= @user.name %></td>
                 <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= comment.recipe.title %></td>
                 <td><%= comment.comment %></td>
