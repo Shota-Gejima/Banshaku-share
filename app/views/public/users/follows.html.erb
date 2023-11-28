@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-3">
-    <h2 class="bg-brown mt-3 text-left">フォロー一覧</h2>
+    <h2 class="bg-brown mt-3 text-left">フォロー一覧(全<%= @follows.total_count %>人)</h2>
     <%= render "users-index", users: @follows %>
   </div>
   <div class="mb-3">
