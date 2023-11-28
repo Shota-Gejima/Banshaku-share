@@ -11,7 +11,7 @@
 に飽きたと感じている人も多いでしょう。そんな人たちに新しいおつまみのアイデアを提</br>
 供し、家飲みをより楽しんでいただきたいという思いから、このサイトを制作することに</br>
 決めました。
-
+​
 ### ターゲットユーザ
 * 晩酌を楽しむが、いつも同じおつまみに飽きてしまっている人
 * 新しいおつまみのアイデアやレシピを求めている人
@@ -24,15 +24,11 @@
 ​
 ## 設計書
 ### ER図
-<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/0e621420-0aab-4ba4-8966-22cab38ccdaa" width= "500"></br>
-![image](https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/8f3bc4db-5a2d-4185-8f3c-c760f8bba87e)
-
+<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/e4d84da8-0e05-4983-9779-8e635e5726f3" width= "500"></br>
 ### テーブル定義書
 https://docs.google.com/spreadsheets/d/1NmU6uRml6Ij-ZepDzKGj3OYByJRacvRR/edit?usp=sharing&ouid=100025152045489483757&rtpof=true&sd=true
 ### アプリケーション詳細設計
 https://docs.google.com/spreadsheets/d/1T9ZUYaTQ0au_gVHSZ9fnhmQvL---QN60AQuvy0E3xKY/edit?usp=sharing
-### ワイヤーフレーム
-
 ## 開発環境
 - OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
