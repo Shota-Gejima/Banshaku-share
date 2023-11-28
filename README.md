@@ -30,7 +30,7 @@ https://docs.google.com/spreadsheets/d/1NmU6uRml6Ij-ZepDzKGj3OYByJRacvRR/edit?us
 ### アプリケーション詳細設計
 https://docs.google.com/spreadsheets/d/1T9ZUYaTQ0au_gVHSZ9fnhmQvL---QN60AQuvy0E3xKY/edit?usp=sharing
 ### ワイヤーフレーム
-<img src="https://github.com/Shota-Gejima/Banshaku-share/assets/143868019/09d093f4-8899-44ca-af06-f6efdb2749d5" width= "500"></br>
+
 ## 開発環境
 - OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
