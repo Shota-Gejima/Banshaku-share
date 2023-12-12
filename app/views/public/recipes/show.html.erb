@@ -18,6 +18,12 @@
           <strong><i class="fa-solid fa-circle-left ml-2"></i></i>戻る</strong>
         <% end %>
       </p>
+      <p>
+        いいね：
+        <span id="favorite-buttons_<%= @recipe.id %>">
+           <%= render "public/favorites/favorite", recipe: @recipe %>
+        </span>
+      </p>
       <!--管理者か投稿者しか消せないようにする-->
       <% if current_admin || @recipe.user_id == current_user.id %>
         <div class="mt-3">

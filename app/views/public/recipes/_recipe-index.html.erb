@@ -8,7 +8,9 @@
         <div class="card-body" style="background-color: white;">
           <div class="row">
             <div class="col-2">
-              <%= image_tag recipe.user.get_profile_image(50, 50), class: "my-3 rounded-circle" %>
+              <%= link_to user_path(recipe.user_id) do %>
+                <%= image_tag recipe.user.get_profile_image(50, 50), class: "my-3 rounded-circle" %>
+              <% end %>
             </div>
             <div class="col-10">
               <p class="card-title">
