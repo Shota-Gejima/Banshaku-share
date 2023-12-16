@@ -112,7 +112,7 @@ footer {
   color: #fff;
   font-size: 40px;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* ホバー時のトランジション効果の設定 */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 9999;
 }
 // ページが100ピクセルまでスクロールされたらボタンを表示

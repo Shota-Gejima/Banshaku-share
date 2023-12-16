@@ -29,7 +29,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to(recipes_path, class: "btn btn-outline-light text-light nav-link ml-2") do %>
+            <%= link_to(recipes_path, class: "btn btn-outline-light text-light nav-link ml-2",'data-turbolinks': false) do %>
               <strong><i class="fa-solid fa-utensils mr-1"></i></i><span>おつまみ一覧</span></strong>
             <% end %>
           </li>
@@ -46,7 +46,7 @@
           </li>
         <% elsif admin_signed_in? %>
           <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
-          <li class="nav-item"><%= link_to "おつまみ一覧", recipes_path, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
+          <li class="nav-item"><%= link_to "おつまみ一覧", recipes_path, class: "btn btn-outline-light text-light nav-link ml-2",'data-turbolinks': false %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light text-light nav-link ml-2" %></li>
         <% else %>
           <li class="nav-item">

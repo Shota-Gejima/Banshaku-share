@@ -24,11 +24,9 @@
   <div class="row">
     <%= render "recipe-index", recipes: @recipes %>
   </div>
-  <div id="top">
     <a href="#" class="scroll-top-btn">
       <i class="fas fa-chevron-circle-up" data-toggle=tooltip data-placement="bottom" title="最上部へ移動"></i>
     </a>
-  </div>
   <div class="d-flex justify-content-center mt-3 custom-pagination">
     <%= paginate @recipes %>
   </div>
