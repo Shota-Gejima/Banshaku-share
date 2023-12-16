@@ -12,6 +12,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
+import "top-page-button.js";
 
 Rails.start()
 Turbolinks.start()

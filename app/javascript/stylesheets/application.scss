@@ -96,3 +96,28 @@ footer {
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
 }
+
+/* スクロールボタン */
+.scroll-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 5%; 
+  right: 3%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 40px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* ホバー時のトランジション効果の設定 */
+  z-index: 9999;
+}
+// ページが100ピクセルまでスクロールされたらボタンを表示
+.scroll-top-btn:hover {
+  text-decoration: none;
+  color: #fff;
+  transform: scale(1.3);
+}
