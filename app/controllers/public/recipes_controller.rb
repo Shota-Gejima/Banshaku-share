@@ -1,6 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :search_recipe, only: [:index, :search]
-  before_action :is_matching_log_in_user, only: [:edit, :update]
+  before_action :is_matching_log_in_user, only: [:destroy, :edit, :update]
   
   def new
     unless current_admin
@@ -22,7 +22,7 @@ class Public::RecipesController < ApplicationController
   end
   
   def edit
-    @recipe = Recipe.find(params[:id])
+    # before_actionで実行のため未記入
   end
   
   def update
@@ -98,10 +98,10 @@ class Public::RecipesController < ApplicationController
   end
   
   def is_matching_log_in_user
-    recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
     unless current_admin
-      if recipe.user.id != current_user.id
-        flash[:alert] = "他ユーザーが投稿したおつまみの編集画面には遷移できません"
+      if @recipe.user.id != current_user.id
+        flash[:alert] = "他ユーザーが投稿したおつまみの編集・削除はできません"
         redirect_to recipes_path
       end
     end
