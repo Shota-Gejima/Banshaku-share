@@ -13,4 +13,5 @@ class Alcohol < ActiveHash::Base
     {id: 8, name: 'ブランデー'},
     {id: 9, name: 'その他'}
   ]
+  
 end

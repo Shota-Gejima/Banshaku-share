@@ -12,7 +12,7 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def index
@@ -21,7 +21,7 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "変更に成功しました"
       redirect_to user_path(@user.id)
@@ -71,9 +71,9 @@ class Public::UsersController < ApplicationController
   
   #自分以外のユーザーのプロフィールは編集できないようにする
   def is_matching_log_in_user
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
     unless current_admin
-      if user.id != current_user.id
+      if @user.id != current_user.id
         flash[:alert] = "他ユーザーの編集画面には遷移できません"
         redirect_to recipes_path
       end

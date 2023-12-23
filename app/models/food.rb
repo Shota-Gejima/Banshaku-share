@@ -14,4 +14,5 @@ class Food < ActiveHash::Base
     {id: 9, name: '菓子類'},
     {id: 10, name: 'その他'},
   ]
+  
 end

@@ -9,4 +9,5 @@ class MakingTime < ActiveHash::Base
     {id: 4, name: '20分'},
     {id: 5, name: '20分以上'},
   ]
+  
 end

@@ -26,7 +26,6 @@ class Public::RecipesController < ApplicationController
   end
   
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       flash[:notice] = "更新に成功しました"
       redirect_to recipe_path(@recipe.id)
@@ -53,8 +52,7 @@ class Public::RecipesController < ApplicationController
   end
   
   def destroy
-    recipe = Recipe.find(params[:id])
-    if recipe.destroy
+    if @recipe.destroy
       flash[:notice] = "削除に成功しました"
       redirect_to recipes_path
     end
