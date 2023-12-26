@@ -12,7 +12,7 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
+    # before_actionで実行のため未記入
   end
 
   def index
@@ -21,7 +21,6 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    # @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "変更に成功しました"
       redirect_to user_path(@user.id)
