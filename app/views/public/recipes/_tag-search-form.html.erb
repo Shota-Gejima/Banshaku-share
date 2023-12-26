@@ -8,7 +8,7 @@
         <td><%= f.collection_select :making_time_id_eq, MakingTime.where.not(id: 0), :id, :name, include_blank: "所要時間検索", class: "form-control" %></td>
         <td>
           <%= f.button class: 'btn btn-primary' do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
         </td>
       </tr>
