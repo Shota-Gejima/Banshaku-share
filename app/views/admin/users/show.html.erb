@@ -10,6 +10,10 @@
           <td><%= @user.id %></td>
         </tr>
         <tr>
+          <td>登録日時</td>
+          <td><%= @user.created_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <tr>
           <td>氏名</td>
           <td><%= @user.name %></td>
         </tr>
